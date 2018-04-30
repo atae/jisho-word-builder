@@ -5,6 +5,9 @@ sup {
 
 .entry {
     text-align: left;
+    display:flex;
+    justify-content: flex-start;
+    align-items:center;
 }
 
 .entry > h2 {
@@ -19,6 +22,9 @@ sup {
     text-align:center;
 }
 
+.word{
+    min-width: 250px;
+}
 .jisho {
     text-align: left;
 }
