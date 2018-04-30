@@ -8,7 +8,6 @@ app.use(cors());
 
 app.use('/', function (req, res) {
     var url = 'http://jisho.org/api/v1/search/words' + req.url;
-    console.log(url); 
     req.pipe(request(url)).pipe(res);
 });
 

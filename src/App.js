@@ -11,6 +11,7 @@ import heisigToKanji from './heisigToKanji.json';
 class App extends Component {
   constructor() {
     super();
+    //Add mouseover on Kanji to show Heisig keyword
     this.state = {dictionaryResults: {}, builtWord: [], heisigResult: {}, searched: false};
     this.buildWord = this.buildWord.bind(this);
     this.clearWord = this.clearWord.bind(this);
@@ -49,7 +50,6 @@ class App extends Component {
   backspaceWord() {
     let newBuiltWord = this.state.builtWord;
     newBuiltWord.pop();
-    // console.log(newBuiltWord)
     this.setState({ builtWord: newBuiltWord});
   }
 
@@ -57,7 +57,7 @@ class App extends Component {
     //Figure out how to work with Heisig Result backwards
 
     let that = this;
-    let builtWord = this.state.builtWord;
+    let builtWord = this.state.builtWord.join('');
     fetch(`http://localhost:8080/?keyword=${builtWord}`, { mode: 'cors' }).then((res) => {
       res.json().then(function (resJson) {
         let jsonResponse = {};
@@ -69,7 +69,6 @@ class App extends Component {
 
 
   render() {
-    console.log(this.state);
     return (
       <div className="App">
         <header className="App-header">
@@ -84,6 +83,7 @@ class App extends Component {
           clearWord={this.clearWord} 
           searchBuiltWord={this.searchBuiltWord}/>
         <DictionaryEntryIndex 
+          searchForWords={this.searchForWords}
           buildWord={this.buildWord}
           dictionaryEntries={this.state.dictionaryResults} 
           heisigEntry={this.state.heisigResult}

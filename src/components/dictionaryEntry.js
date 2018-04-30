@@ -1,6 +1,7 @@
-import React, { Component } from 'react';
+import React from 'react';
 import '../Dictionary.css';
 import DictionarySenseList from './dictionarySenseList';
+
 const DictionaryEntry = (props) => {
     let featuredWord = props.entry.japanese[0].word ? props.entry.japanese[0].word : props.entry.japanese[0].reading
         return (

@@ -32,7 +32,7 @@ class DictionaryEntryIndex extends Component {
         return (
             
             <div className="container">
-                {Object.keys(this.props.heisigEntry).length !== 0 ? <HeisigEntry buildWord={this.props.buildWord} entry={this.props.heisigEntry} /> : ''}
+                {Object.keys(this.props.heisigEntry).length !== 0 ? <HeisigEntry searchForWords={this.props.searchForWords} buildWord={this.props.buildWord} entry={this.props.heisigEntry} /> : ''}
                 {entries}
             </div>
         );

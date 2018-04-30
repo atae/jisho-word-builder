@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import '../Dictionary.css';
 
 const HeisigEntry = (props) => {
@@ -11,6 +11,7 @@ const HeisigEntry = (props) => {
             <p> {Object.keys(props.entry)[0]} </p>
             <div>
                 <button onClick={() => { props.buildWord(Object.values(props.entry)[0]); }}> Add {Object.values(props.entry)[0]} to Built Word </button>
+                <button onClick={() => { props.searchForWords(Object.values(props.entry)[0]); }}> Search {Object.values(props.entry)[0]} </button>
             </div>
             <hr/>
             
