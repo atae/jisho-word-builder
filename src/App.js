@@ -14,6 +14,8 @@ class App extends Component {
     this.state = {dictionaryResults: {}, builtWord: [], heisigResult: {}, searched: false};
     this.buildWord = this.buildWord.bind(this);
     this.clearWord = this.clearWord.bind(this);
+    this.backspaceWord = this.backspaceWord.bind(this);
+    this.searchBuiltWord = this.searchBuiltWord.bind(this);
     this.searchForWords = this.searchForWords.bind(this);
     this.heisig = heisigToKanji;
   }
@@ -44,6 +46,28 @@ class App extends Component {
     this.setState({builtWord: []});
   }   
 
+  backspaceWord() {
+    let newBuiltWord = this.state.builtWord;
+    newBuiltWord.pop();
+    // console.log(newBuiltWord)
+    this.setState({ builtWord: newBuiltWord});
+  }
+
+  searchBuiltWord() {
+    //Figure out how to work with Heisig Result backwards
+
+    let that = this;
+    let builtWord = this.state.builtWord;
+    fetch(`http://localhost:8080/?keyword=${builtWord}`, { mode: 'cors' }).then((res) => {
+      res.json().then(function (resJson) {
+        let jsonResponse = {};
+        jsonResponse = resJson.data;
+        that.setState({ dictionaryResults: jsonResponse, heisigResult: {}, searched: true });
+      });
+    });
+  }
+
+
   render() {
     console.log(this.state);
     return (
@@ -54,8 +78,13 @@ class App extends Component {
         </header>
 
         <SearchBar submitHandler={this.searchForWords}/>
-        <BuiltWord buildWord={this.buildWord} clearWord={this.clearWord} />
+        <BuiltWord 
+          builtWord={this.state.builtWord} 
+          backspaceWord={this.backspaceWord}
+          clearWord={this.clearWord} 
+          searchBuiltWord={this.searchBuiltWord}/>
         <DictionaryEntryIndex 
+          buildWord={this.buildWord}
           dictionaryEntries={this.state.dictionaryResults} 
           heisigEntry={this.state.heisigResult}
           searched={this.state.searched} />

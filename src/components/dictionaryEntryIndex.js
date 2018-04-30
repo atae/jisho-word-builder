@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import DictionaryEntry from './dictionaryEntry';
+import HeisigEntry from './heisigEntry';
+import '../Dictionary.css';
 
 class DictionaryEntryIndex extends Component {
     constructor(props){
@@ -11,8 +13,14 @@ class DictionaryEntryIndex extends Component {
 
     generateDictionaryEntries() {
         let generatedDictionaryEntries = [];
-        this.props.dictionaryEntries.forEach((entry, i) => {
-            generatedDictionaryEntries.push(<DictionaryEntry key={'dictionaryEntry' + i } entry={entry}/>);
+        if (Object.keys(this.props.dictionaryEntries).length !== 0) {
+            generatedDictionaryEntries.push(<h3 className="jisho" key={"results"}>Jisho Results: </h3>)
+        } else if (this.props.searched === true) {
+            generatedDictionaryEntries.push(<h3 key={"no results"}>No results! </h3>)
+        }
+        Object.keys(this.props.dictionaryEntries).forEach((entryKey, i) => {
+            let currentEntry = this.props.dictionaryEntries[entryKey];
+            generatedDictionaryEntries.push(<DictionaryEntry buildWord={this.props.buildWord} key={'dictionaryEntry' + i } entry={currentEntry}/>);
         });
 
         return generatedDictionaryEntries;
@@ -20,11 +28,11 @@ class DictionaryEntryIndex extends Component {
     }
 
     render() {
-        wq
-q
-let entries = this.generateDictionaryEntries();
+        let entries = this.generateDictionaryEntries();
         return (
-            <div>
+            
+            <div className="container">
+                {Object.keys(this.props.heisigEntry).length !== 0 ? <HeisigEntry buildWord={this.props.buildWord} entry={this.props.heisigEntry} /> : ''}
                 {entries}
             </div>
         );

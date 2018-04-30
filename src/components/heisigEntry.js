@@ -3,13 +3,17 @@ import '../Dictionary.css';
 
 const HeisigEntry = (props) => {
 
+
     return (
         <div className="entry heisig">
             <h3> Heisig Result: </h3>
             <h2> {Object.values(props.entry)[0]} </h2>
             <p> {Object.keys(props.entry)[0]} </p>
-            <br/>
+            <div>
+                <button onClick={() => { props.buildWord(Object.values(props.entry)[0]); }}> Add {Object.values(props.entry)[0]} to Built Word </button>
+            </div>
             <hr/>
+            
         </div>
     );
 
