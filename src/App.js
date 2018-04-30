@@ -4,25 +4,33 @@ import './App.css';
 import SearchBar from './components/searchBar';
 import BuiltWord from './components/builtWord';
 import DictionaryEntryIndex from './components/dictionaryEntryIndex';
+import heisigToKanji from './heisigToKanji.json';
+// import kanjiToHeisig from 'kanjiToHeisig.json';
 
 
 class App extends Component {
   constructor() {
     super();
-    this.state = {dictionaryResults: {}, builtWord: []};
+    this.state = {dictionaryResults: {}, builtWord: [], heisigResult: {}, searched: false};
     this.buildWord = this.buildWord.bind(this);
     this.clearWord = this.clearWord.bind(this);
     this.searchForWords = this.searchForWords.bind(this);
+    this.heisig = heisigToKanji;
   }
 
   searchForWords(word) {
-    console.log(word);
+    let heisigResult = {};
+    if (this.heisig[word.toLowerCase()]) {
+      heisigResult[word.toLowerCase()] = this.heisig[word.toLowerCase()];
+    }
+    
+
     fetch(`http://localhost:8080/?keyword=${word}`, { mode: 'cors' }).then((res) => {
       let that = this;
       res.json().then(function (resJson) {
         let jsonResponse = {};
         jsonResponse = resJson.data;
-        that.setState({ dictionaryResults: jsonResponse });
+        that.setState({ dictionaryResults: jsonResponse, heisigResult, searched: true });
       });
     });
   }
@@ -37,7 +45,7 @@ class App extends Component {
   }   
 
   render() {
-    console.log(this.state.dictionaryResults);
+    console.log(this.state);
     return (
       <div className="App">
         <header className="App-header">
@@ -47,7 +55,10 @@ class App extends Component {
 
         <SearchBar submitHandler={this.searchForWords}/>
         <BuiltWord buildWord={this.buildWord} clearWord={this.clearWord} />
-        <DictionaryEntryIndex dictionaryEntries={this.state.dictionaryResults}/>
+        <DictionaryEntryIndex 
+          dictionaryEntries={this.state.dictionaryResults} 
+          heisigEntry={this.state.heisigResult}
+          searched={this.state.searched} />
         
       </div>
     );

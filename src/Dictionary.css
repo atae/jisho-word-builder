@@ -1,0 +1,20 @@
+sup {
+    font-size: 10px;
+    margin-bottom: 0px;
+}
+
+.entry {
+    text-align: left;
+}
+
+.entry > h2 {
+    margin-bottom: 0px;
+}
+
+.entry > p {
+    margin-top: -5px;
+}
+
+.heisig {
+    text-align:center;
+}

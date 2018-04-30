@@ -1,14 +1,16 @@
 import React, { Component } from 'react';
+import '../Dictionary.css';
 
-class DictionaryEntry extends Component {
-    render() {
+const DictionaryEntry = (props) => {
+
         return (
-            <div>
-                <p>Dictionary Entry!</p>
+            <div className="entry">
+                <h2>{props.entry.japanese[0].word ? props.entry.japanese[0].word : props.entry.japanese[0].reading}</h2>
+                <p>{props.entry.japanese[0].word ? props.entry.japanese[0].reading : ""}</p>
+                <hr/>
             </div>
         );
-    }
 
-}
+};
 
 export default DictionaryEntry;
