@@ -1,5 +1,9 @@
+html, body, #root {
+  height: 100%;
+}
 .App {
   text-align: center;
+  height: 100%;
 }
 
 .App-logo {
@@ -34,4 +38,9 @@
 
 .hidden {
   display:none;
+}
+
+.footer {
+  font-size: 10px;
+  margin: 20px;
 }

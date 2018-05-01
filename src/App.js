@@ -28,7 +28,7 @@ class App extends Component {
     }
     
 
-    fetch(`http://localhost:8080/?keyword=${word}`, { mode: 'cors' }).then((res) => {
+    fetch(`https://ancient-sands-74909.herokuapp.com/?keyword=${word}`, { mode: 'cors' }).then((res) => {
       let that = this;
       res.json().then(function (resJson) {
         let jsonResponse = {};
@@ -58,7 +58,7 @@ class App extends Component {
 
     let that = this;
     let builtWord = this.state.builtWord.join('');
-    fetch(`http://localhost:8080/?keyword=${builtWord}`, { mode: 'cors' }).then((res) => {
+    fetch(`https://ancient-sands-74909.herokuapp.com/?keyword=${builtWord}`, { mode: 'cors' }).then((res) => {
       res.json().then(function (resJson) {
         let jsonResponse = {};
         jsonResponse = resJson.data;
@@ -73,7 +73,7 @@ class App extends Component {
       <div className="App">
         <header className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
+          <h1 className="App-title">Heisig-Jisho Word Builder</h1>
         </header>
 
         <SearchBar submitHandler={this.searchForWords}/>
@@ -88,7 +88,9 @@ class App extends Component {
           dictionaryEntries={this.state.dictionaryResults} 
           heisigEntry={this.state.heisigResult}
           searched={this.state.searched} />
-        
+        <div className="footer">
+          This site uses some heisig json and the Official Unofficial Jisho API
+        </div>
       </div>
     );
   }
