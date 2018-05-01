@@ -12,7 +12,7 @@ class App extends Component {
   constructor() {
     super();
     //Add mouseover on Kanji to show Heisig keyword
-    this.state = {dictionaryResults: {}, builtWord: [], heisigResult: {}, searched: false};
+    this.state = {fetching: '', dictionaryResults: {}, builtWord: [], heisigResult: {}, searched: false, error: ''};
     this.buildWord = this.buildWord.bind(this);
     this.clearWord = this.clearWord.bind(this);
     this.backspaceWord = this.backspaceWord.bind(this);
@@ -26,14 +26,25 @@ class App extends Component {
     if (this.heisig[word.toLowerCase()]) {
       heisigResult[word.toLowerCase()] = this.heisig[word.toLowerCase()];
     }
-    
+    this.loading.className = "fetching";
+
 
     fetch(`https://ancient-sands-74909.herokuapp.com/?keyword=${word}`, { mode: 'cors' }).then((res) => {
       let that = this;
+
       res.json().then(function (resJson) {
+        that.loading.className = "fetching hiddenBlock";
+
         let jsonResponse = {};
         jsonResponse = resJson.data;
-        that.setState({ dictionaryResults: jsonResponse, heisigResult, searched: true });
+        that.setState({ fetching: '', dictionaryResults: jsonResponse, heisigResult, error: '', searched: true });
+      });
+    }).catch((err) => {
+      this.loading.className = "fetching hiddenBlock";
+
+      this.setState({
+        
+        error: `I cannot breve: ${err}`
       });
     });
   }
@@ -55,33 +66,46 @@ class App extends Component {
 
   searchBuiltWord() {
     //Figure out how to work with Heisig Result backwards
-
+    this.loading.className = "fetching";
     let that = this;
     let builtWord = this.state.builtWord.join('');
     fetch(`https://ancient-sands-74909.herokuapp.com/?keyword=${builtWord}`, { mode: 'cors' }).then((res) => {
       res.json().then(function (resJson) {
+        that.loading.className = "fetching hiddenBlock";
+
         let jsonResponse = {};
         jsonResponse = resJson.data;
-        that.setState({ dictionaryResults: jsonResponse, heisigResult: {}, searched: true });
+        that.setState({ fetching: '', dictionaryResults: jsonResponse, heisigResult: {},error: '', searched: true });
       });
+    }).catch((err) => {
+      this.loading.className = "fetching hiddenBlock";
+
+      this.setState({ error: `I cannot breve: ${err}`});
     });
   }
 
 
   render() {
+    console.log(this.state.fetching);
     return (
       <div className="App">
         <header className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
           <h1 className="App-title">Heisig-Jisho Word Builder</h1>
         </header>
-
+        
         <SearchBar submitHandler={this.searchForWords}/>
         <BuiltWord 
           builtWord={this.state.builtWord} 
           backspaceWord={this.backspaceWord}
           clearWord={this.clearWord} 
           searchBuiltWord={this.searchBuiltWord}/>
+          <div ref={(input) => {this.loading = input;}} className="fetching hiddenBlock">
+            <p>Fetching Data...</p>
+          </div>
+        <div className="error">
+          <p>{this.state.error != '' ? this.state.error : ''}</p>
+        </div>
         <DictionaryEntryIndex 
           searchForWords={this.searchForWords}
           buildWord={this.buildWord}
@@ -89,7 +113,8 @@ class App extends Component {
           heisigEntry={this.state.heisigResult}
           searched={this.state.searched} />
         <div className="footer">
-          This site uses some heisig json and the Official Unofficial Jisho API
+          <p>This site uses some heisig json and the Official Unofficial Jisho.org API</p>
+          <p> Andrew Tae 2018 </p>
         </div>
       </div>
     );

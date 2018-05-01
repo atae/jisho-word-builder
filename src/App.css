@@ -40,6 +40,10 @@ html, body, #root {
   display:none;
 }
 
+.hiddenBlock {
+  visibility: hidden;
+}
+
 .footer {
   font-size: 10px;
   margin: 20px;
