@@ -10,6 +10,19 @@ sup {
     align-items:center;
 }
 
+@media(max-width:480px) {
+    .entry{
+        justify-content: space-between;
+    }
+
+    .sense {
+       width: 200px;
+        text-align: right;
+        line-height: 20px;
+        
+    }
+
+}
 .entry > h2 {
     margin-bottom: 0px;
 }
