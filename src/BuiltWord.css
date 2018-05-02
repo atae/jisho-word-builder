@@ -2,19 +2,40 @@
     display:flex;
     justify-content:center;
     align-items: center;
+    margin-top: 20px;
 }
 
-@media (max-width: 480px) {
-    flex-direction: column;
+.buttons {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+}
+@media(max-width: 480px) {
+    .builtWord{
+        flex-direction: column;
+    }
+
+    .buttons {
+        flex-direction: column;
+    }
 }
 .builtWord > p {
+    margin-top: 5px;
+    margin-bottom: 20px;
     margin-left: 10px;
     margin-right: 10px;
 }
 
+
+
 .buttons > button {
     /* width: 100%; */
         max-width: 100%;
+        margin-top: 0px;
         margin-right: 10px;
         margin-left: 10px;
+        margin-bottom: 20px;
+        font-size: 14px;
+        padding: 10px;
 }
