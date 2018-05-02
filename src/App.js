@@ -104,7 +104,7 @@ class App extends Component {
             <p>Fetching Data...</p>
           </div>
         <div className="error">
-          <p>{this.state.error != '' ? this.state.error : ''}</p>
+          <p>{this.state.error !== '' ? this.state.error : ''}</p>
         </div>
         <DictionaryEntryIndex 
           searchForWords={this.searchForWords}

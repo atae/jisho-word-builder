@@ -8,3 +8,10 @@
     margin-left: 10px;
     margin-right: 10px;
 }
+
+.buttons > button {
+    /* width: 100%; */
+        max-width: 100%;
+        margin-right: 10px;
+        margin-left: 10px;
+}
