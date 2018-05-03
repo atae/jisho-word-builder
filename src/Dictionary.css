@@ -5,24 +5,12 @@ sup {
 
 .entry {
     text-align: left;
-    display:flex;
-    justify-content: flex-start;
-    align-items:center;
+    /* display:flex; */
+    /* justify-content: flex-start; */
+    /* align-items:center; */
 }
 
-@media(max-width:480px) {
-    .entry{
-        justify-content: space-between;
-    }
 
-    .sense {
-       width: 200px;
-        text-align: right;
-        line-height: 20px;
-        
-    }
-
-}
 .entry > h2 {
     margin-bottom: 0px;
 }
@@ -36,12 +24,13 @@ sup {
 }
 
 .word{
-    width: 50%;
+    /* width: 50%; */
     min-width: 100px;
     max-width: 250px;
 }
 .jisho {
     text-align: left;
+    margin-bottom: 20px;
 }
 
 .heisig > div > button {
@@ -50,4 +39,17 @@ sup {
         margin-right: 10px;
         margin-left: 10px;
 
+}
+
+@media(max-width:480px) {
+    .entry {
+        justify-content: space-between;
+    }
+    .sense {
+        width: 200px;
+        line-height: 20px;
+    }
+    .entry > div > h2 {
+        font-size: 1.5rem
+    }
 }

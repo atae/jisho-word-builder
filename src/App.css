@@ -1,5 +1,6 @@
 html, body, #root {
   height: 100%;
+  font-family: polaris;
 }
 .App {
   text-align: center;
@@ -12,19 +13,32 @@ html, body, #root {
 }
 
 .App-header {
+  margin-top: 70px;
   background-color: #222;
-  height: 150px;
+  height: 200px;
   padding: 20px;
   color: white;
+}
+@media(max-width: 767px) {
+.App-header{
+  margin-top: 70px;
+}
 }
 
 button {
   font-size: 14px;
   border-radius: 10px;
-  margin-top: -10px;
-  max-width: 100px;
+  /* margin-top: -10px; */
+  /* max-width: 100px; */
   background-color: white;
   border-color: black;
+  margin-bottom: 30px;
+  padding: 10px;
+  margin-top: 10px;
+}
+
+h1, h2, h3 {
+  font-family:polaris-bold;
 }
 
 button:hover {
@@ -37,6 +51,8 @@ button:hover {
 input {
   font-size: 16px;
   margin-right: 10px;
+  padding-left: 5px;
+  border: 1px solid black;
 }
 
 .App-title {

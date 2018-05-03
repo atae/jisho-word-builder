@@ -6,8 +6,8 @@ const DictionaryEntry = (props) => {
     let featuredWord = props.entry.japanese[0].word ? props.entry.japanese[0].word : props.entry.japanese[0].reading
         return (
             <div>
-                <div className="entry">
-                    <div className="word">
+                <div className="entry row">
+                    <div className="col-md-3 col-xs-6">
                     <h2>{featuredWord}</h2>
                     <p>{props.entry.japanese[0].word ? props.entry.japanese[0].reading : ""}</p>
                     <div>
@@ -17,7 +17,7 @@ const DictionaryEntry = (props) => {
                         </button>
                     </div>
                     </div>
-                    <div className="sense">
+                    <div className="sense col-9 col-xs-6">
                         <DictionarySenseList entries={props.entry.senses} /> 
                     </div>
                 </div>

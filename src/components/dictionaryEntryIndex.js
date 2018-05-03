@@ -14,7 +14,7 @@ class DictionaryEntryIndex extends Component {
     generateDictionaryEntries() {
         let generatedDictionaryEntries = [];
         if (Object.keys(this.props.dictionaryEntries).length !== 0) {
-            generatedDictionaryEntries.push(<h3 className="jisho" key={"results"}>Jisho Results: </h3>)
+            generatedDictionaryEntries.push(<h3 className="jisho" key={"results"}>Jisho Results </h3>)
         } else if (this.props.searched === true) {
             generatedDictionaryEntries.push(<h3 key={"no results"}>No results! </h3>)
         }
