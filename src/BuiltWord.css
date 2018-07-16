@@ -39,6 +39,9 @@
         font-size: 12px;
         padding: 10px;
 }
+input {
+    margin-top: -14px;
+}
 
 @media(max-width: 767px) {
     .builtWord {
@@ -57,4 +60,9 @@
     /* .buttons {
         flex-direction: column;
     } */
+    input {
+        margin: 10px;
+        margin-top: 0px;
+    }
 }
+

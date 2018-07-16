@@ -4,7 +4,8 @@ import './App.css';
 import SearchBar from './components/searchBar';
 import BuiltWord from './components/builtWord';
 import DictionaryEntryIndex from './components/dictionaryEntryIndex';
-import heisigToKanji from './heisigToKanji.json';
+import heisigToKanji from './heisigToKanjiExpandedStructure.json';
+import Fuse from 'fuse.js'
 // import kanjiToHeisig from 'kanjiToHeisig.json';
 
 
@@ -12,19 +13,40 @@ class App extends Component {
   constructor() {
     super();
     //Add mouseover on Kanji to show Heisig keyword
-    this.state = {fetching: '', dictionaryResults: {}, builtWord: [], heisigResult: {}, searched: false, error: ''};
+    this.state = {fetching: '', dictionaryResults: {}, builtWord: "", heisigResults: {}, searched: false, error: ''};
     this.buildWord = this.buildWord.bind(this);
     this.clearWord = this.clearWord.bind(this);
     this.backspaceWord = this.backspaceWord.bind(this);
     this.searchBuiltWord = this.searchBuiltWord.bind(this);
     this.searchForWords = this.searchForWords.bind(this);
-    this.heisig = heisigToKanji;
+    this.heisig = heisigToKanji.entries;
+    this.heisigSearchOptions = {
+      shouldSort: true,
+      threshold: 0.2,
+      location: 0,
+      distance: 100,
+      maxPatternLength: 32,
+      minMatchCharLength: 1,
+      keys: [
+        "heisig"
+      ]
+    }
   }
 
   searchForWords(word) {
-    let heisigResult = {};
-    if (this.heisig[word.toLowerCase()]) {
-      heisigResult[word.toLowerCase()] = this.heisig[word.toLowerCase()];
+    let fuse = new Fuse(this.heisig, this.heisigSearchOptions);
+    let heisigSearchResults = fuse.search(word)
+    let heisigResults = []
+    if (heisigSearchResults.length != 0) {
+
+      heisigResults = heisigSearchResults.slice(0,5).map((result) => {
+        var wordEntry = result['heisig']
+        var kanji = result['kanji']
+        return [ wordEntry , kanji]
+      })
+     
+      // heisigResults = heisigResults.slice(0,5)
+      console.log(heisigResults)
     }
     this.loading.className = "fetching";
 
@@ -37,7 +59,7 @@ class App extends Component {
 
         let jsonResponse = {};
         jsonResponse = resJson.data;
-        that.setState({ fetching: '', dictionaryResults: jsonResponse, heisigResult, error: '', searched: true });
+        that.setState({ fetching: '', dictionaryResults: jsonResponse, heisigResults, error: '', searched: true });
       });
     }).catch((err) => {
       this.loading.className = "fetching hiddenBlock";
@@ -54,6 +76,11 @@ class App extends Component {
     this.setState({builtWord: newBuiltWord});
   }
 
+  builtWordChange = (e) => {
+    console.log(e.target)
+    this.setState({builtWord: e.target.value})
+  }
+
   clearWord() {
     this.setState({builtWord: []});
   }   
@@ -68,14 +95,14 @@ class App extends Component {
     //Figure out how to work with Heisig Result backwards
     this.loading.className = "fetching";
     let that = this;
-    let builtWord = this.state.builtWord.join('');
+    let builtWord = this.state.builtWord;
     fetch(`https://ancient-sands-74909.herokuapp.com/?keyword=${builtWord}`, { mode: 'cors' }).then((res) => {
       res.json().then(function (resJson) {
         that.loading.className = "fetching hiddenBlock";
 
         let jsonResponse = {};
         jsonResponse = resJson.data;
-        that.setState({ fetching: '', dictionaryResults: jsonResponse, heisigResult: {},error: '', searched: true });
+        that.setState({ fetching: '', dictionaryResults: jsonResponse, heisigResults: {},error: '', searched: true });
       });
     }).catch((err) => {
       this.loading.className = "fetching hiddenBlock";
@@ -96,6 +123,7 @@ class App extends Component {
         
         <SearchBar submitHandler={this.searchForWords}/>
         <BuiltWord 
+          builtWordChange={this.builtWordChange}
           builtWord={this.state.builtWord} 
           backspaceWord={this.backspaceWord}
           clearWord={this.clearWord} 
@@ -110,7 +138,7 @@ class App extends Component {
           searchForWords={this.searchForWords}
           buildWord={this.buildWord}
           dictionaryEntries={this.state.dictionaryResults} 
-          heisigEntry={this.state.heisigResult}
+          heisigEntries={this.state.heisigResults}
           searched={this.state.searched} />
         <div className="footer">
           <p>This site uses some heisig json and the Official Unofficial Jisho.org API</p>

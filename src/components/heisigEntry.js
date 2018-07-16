@@ -3,19 +3,17 @@ import '../Dictionary.css';
 
 const HeisigEntry = (props) => {
 
-
+    console.log(props.entry)
     return (
-        <div className="heisig">
-            <h3> Heisig Result: </h3>
-            <h2> {Object.values(props.entry)[0]} </h2>
-            <p> {Object.keys(props.entry)[0]} </p>
             <div>
-                <button onClick={() => { props.buildWord(Object.values(props.entry)[0]); }}> Add {Object.values(props.entry)[0]} to Built Word </button>
-                <button onClick={() => { props.searchForWords(Object.values(props.entry)[0]); }}> Search {Object.values(props.entry)[0]} </button>
+                <h2> {props.entry[1]} </h2>
+                <p> {props.entry[0]} </p>
+                <div>
+                    <button onClick={() => { props.buildWord(props.entry[1]); }}> Add {props.entry[1]} to Built Word </button>
+                    <button onClick={() => { props.searchForWords(props.entry[1]); }}> Search {props.entry[1]} </button>
+                </div>
+                <hr/>
             </div>
-            <hr/>
-            
-        </div>
     );
 
 };
