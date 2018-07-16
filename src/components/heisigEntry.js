@@ -10,7 +10,7 @@ const HeisigEntry = (props) => {
                 <p> {props.entry[0]} </p>
                 <div>
                     <button onClick={() => { props.buildWord(props.entry[1]); }}> Add {props.entry[1]} to Built Word </button>
-                    <button onClick={() => { props.searchForWords(props.entry[1]); }}> Search {Object.values(props.entry)[0]} </button>
+                    <button onClick={() => { props.searchForWords(props.entry[1]); }}> Search {props.entry[1]} </button>
                 </div>
                 <hr/>
             </div>

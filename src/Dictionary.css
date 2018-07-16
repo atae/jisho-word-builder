@@ -33,15 +33,35 @@ sup {
     margin-bottom: 20px;
 }
 
-.heisig > div > button {
+.heisig > div > div > div > button {
    
         max-width: 100%;
         margin-right: 10px;
         margin-left: 10px;
-
 }
 
+.heisig-entries {
+    display:flex;
+}
+
+.heisig-entries p {
+  min-height:50px;
+}
+
+@media(max-width:768px) {
+    .heisig-entries {
+        flex-direction:column;
+    }
+}
 @media(max-width:480px) {
+    .heisig-entries{
+        font-size: 14px;  
+    }
+
+    .heisig-entries p {
+        min-height: 0px;
+    }
+
     .entry {
         justify-content: space-between;
     }
