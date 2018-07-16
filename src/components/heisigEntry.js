@@ -12,7 +12,6 @@ const HeisigEntry = (props) => {
                     <button onClick={() => { props.buildWord(props.entry[1]); }}> Add {props.entry[1]} to Built Word </button>
                     <button onClick={() => { props.searchForWords(props.entry[1]); }}> Search {props.entry[1]} </button>
                 </div>
-                <hr/>
             </div>
     );
 

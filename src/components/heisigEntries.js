@@ -22,6 +22,8 @@ class HeisigEntries extends React.Component {
             <div className="heisig-entries">
              { heisigEntries }
             </div>
+            <hr />
+
         </div>
     );
     }

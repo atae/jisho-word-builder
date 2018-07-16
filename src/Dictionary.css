@@ -38,10 +38,13 @@ sup {
         max-width: 100%;
         margin-right: 10px;
         margin-left: 10px;
+        margin-bottom: 0px;
 }
 
 .heisig-entries {
     display:flex;
+    justify-content: center;
+    margin-top: 26px;
 }
 
 .heisig-entries p {
