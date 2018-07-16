@@ -4,7 +4,7 @@ import './App.css';
 import SearchBar from './components/searchBar';
 import BuiltWord from './components/builtWord';
 import DictionaryEntryIndex from './components/dictionaryEntryIndex';
-import heisigToKanji from './heisigToKanji.json';
+import heisigToKanji from './heisigToKanjiExpanded.json';
 // import kanjiToHeisig from 'kanjiToHeisig.json';
 
 
@@ -12,7 +12,7 @@ class App extends Component {
   constructor() {
     super();
     //Add mouseover on Kanji to show Heisig keyword
-    this.state = {fetching: '', dictionaryResults: {}, builtWord: [], heisigResult: {}, searched: false, error: ''};
+    this.state = {fetching: '', dictionaryResults: {}, builtWord: [], heisigResults: {}, searched: false, error: ''};
     this.buildWord = this.buildWord.bind(this);
     this.clearWord = this.clearWord.bind(this);
     this.backspaceWord = this.backspaceWord.bind(this);
@@ -22,9 +22,10 @@ class App extends Component {
   }
 
   searchForWords(word) {
-    let heisigResult = {};
+    let heisigResults = [];
+    //Modify this to include more than one result
     if (this.heisig[word.toLowerCase()]) {
-      heisigResult[word.toLowerCase()] = this.heisig[word.toLowerCase()];
+      heisigResults.push([ word.toLowerCase() , this.heisig[word.toLowerCase()] ])
     }
     this.loading.className = "fetching";
 
@@ -37,7 +38,7 @@ class App extends Component {
 
         let jsonResponse = {};
         jsonResponse = resJson.data;
-        that.setState({ fetching: '', dictionaryResults: jsonResponse, heisigResult, error: '', searched: true });
+        that.setState({ fetching: '', dictionaryResults: jsonResponse, heisigResults, error: '', searched: true });
       });
     }).catch((err) => {
       this.loading.className = "fetching hiddenBlock";
@@ -75,7 +76,7 @@ class App extends Component {
 
         let jsonResponse = {};
         jsonResponse = resJson.data;
-        that.setState({ fetching: '', dictionaryResults: jsonResponse, heisigResult: {},error: '', searched: true });
+        that.setState({ fetching: '', dictionaryResults: jsonResponse, heisigResults: {},error: '', searched: true });
       });
     }).catch((err) => {
       this.loading.className = "fetching hiddenBlock";
@@ -110,7 +111,7 @@ class App extends Component {
           searchForWords={this.searchForWords}
           buildWord={this.buildWord}
           dictionaryEntries={this.state.dictionaryResults} 
-          heisigEntry={this.state.heisigResult}
+          heisigEntries={this.state.heisigResults}
           searched={this.state.searched} />
         <div className="footer">
           <p>This site uses some heisig json and the Official Unofficial Jisho.org API</p>

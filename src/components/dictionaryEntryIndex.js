@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import DictionaryEntry from './dictionaryEntry';
-import HeisigEntry from './heisigEntry';
+import HeisigEntries from './heisigEntries';
 import '../Dictionary.css';
 
 class DictionaryEntryIndex extends Component {
@@ -32,7 +32,7 @@ class DictionaryEntryIndex extends Component {
         return (
             
             <div className="container">
-                {Object.keys(this.props.heisigEntry).length !== 0 ? <HeisigEntry searchForWords={this.props.searchForWords} buildWord={this.props.buildWord} entry={this.props.heisigEntry} /> : ''}
+                {Object.keys(this.props.heisigEntries).length !== 0 ? <HeisigEntries searchForWords={this.props.searchForWords} buildWord={this.props.buildWord} entries={this.props.heisigEntries} /> : ''}
                 {entries}
             </div>
         );
