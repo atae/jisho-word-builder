@@ -28,12 +28,28 @@ class App extends Component {
       maxPatternLength: 32,
       minMatchCharLength: 1,
       keys: [
-        "heisig"
+        "heisig",
+      ]
+    }
+    this.kanjiSearchOptions = {
+      shouldSort: true,
+      threshold: 0.2,
+      location: 0,
+      distance: 100,
+      maxPatternLength: 32,
+      minMatchCharLength: 1,
+      keys: [
+        "kanji",
       ]
     }
   }
 
+  isKanji = (ch) => {
+    return !!ch.match(/[\u4E00-\u9FAF\u3040-\u3096\u30A1-\u30FA\uFF66-\uFF9D\u31F0-\u31FF]/);
+  }
+
   searchForWords(word) {
+　　console.log(word)
     let fuse = new Fuse(this.heisig, this.heisigSearchOptions);
     let heisigSearchResults = fuse.search(word)
     let heisigResults = []
@@ -44,10 +60,31 @@ class App extends Component {
         var kanji = result['kanji']
         return [ wordEntry , kanji]
       })
-     
+    }
+
+      //kanji search
+      let kanjiResults = []
+      fuse = new Fuse(this.heisig, this.kanjiSearchOptions);
+    　　kanjiResults = word.split('').filter((el) => {
+        return this.isKanji(el);
+       }).map((el) => {
+         return fuse.search(el)
+       }).filter((el) => {
+         return el[0]
+       }).map((result) =>{
+         console.log(result)
+          var wordEntry = result[0]['heisig']
+          var kanji = result[0]['kanji']
+          return [wordEntry, kanji]
+       })
+
+       console.log(kanjiResults)
+
+        heisigResults = kanjiResults.concat(heisigResults);
+        heisigResults = [...new Set(heisigResults)]
+
       // heisigResults = heisigResults.slice(0,5)
       console.log(heisigResults)
-    }
     this.loading.className = "fetching";
 
 

@@ -41,9 +41,13 @@ sup {
         margin-bottom: 0px;
 }
 
+.heisig h3 {
+    margin-bottom: 0;
+}
+
 .heisig-entries {
     display:flex;
-    justify-content: center;
+    justify-content: space-around;
     margin-top: 26px;
 }
 
@@ -51,6 +55,18 @@ sup {
   min-height:50px;
 }
 
+.heisig-entries div {
+    width:100%;
+}
+
+.heisig-entries div div {
+    display:flex;
+    flex-direction:column;
+}
+
+.heisig-entries h2 {
+    margin-top: 10px;
+}
 @media(max-width:768px) {
     .heisig-entries {
         flex-direction:column;
