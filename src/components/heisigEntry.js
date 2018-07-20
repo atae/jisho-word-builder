@@ -3,7 +3,6 @@ import '../Dictionary.css';
 
 const HeisigEntry = (props) => {
 
-    console.log(props.entry)
     return (
             <div>
                 <h2> {props.entry[1]} </h2>

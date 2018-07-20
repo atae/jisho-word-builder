@@ -20,9 +20,10 @@ class App extends Component {
     this.searchBuiltWord = this.searchBuiltWord.bind(this);
     this.searchForWords = this.searchForWords.bind(this);
     this.heisig = heisigToKanji.entries;
+    this.searchHeisig = this.searchHeisig.bind(this);
     this.heisigSearchOptions = {
       shouldSort: true,
-      threshold: 0.2,
+      threshold: 0.1,
       location: 0,
       distance: 100,
       maxPatternLength: 32,
@@ -48,43 +49,47 @@ class App extends Component {
     return !!ch.match(/[\u4E00-\u9FAF\u3040-\u3096\u30A1-\u30FA\uFF66-\uFF9D\u31F0-\u31FF]/);
   }
 
-  searchForWords(word) {
-　　console.log(word)
+  searchHeisig(word) {
     let fuse = new Fuse(this.heisig, this.heisigSearchOptions);
     let heisigSearchResults = fuse.search(word)
     let heisigResults = []
     if (heisigSearchResults.length != 0) {
 
-      heisigResults = heisigSearchResults.slice(0,5).map((result) => {
+      heisigResults = heisigSearchResults.slice(0, 5).map((result) => {
         var wordEntry = result['heisig']
         var kanji = result['kanji']
-        return [ wordEntry , kanji]
+        return [wordEntry, kanji]
       })
     }
 
-      //kanji search
-      let kanjiResults = []
-      fuse = new Fuse(this.heisig, this.kanjiSearchOptions);
-    　　kanjiResults = word.split('').filter((el) => {
-        return this.isKanji(el);
-       }).map((el) => {
-         return fuse.search(el)
-       }).filter((el) => {
-         return el[0]
-       }).map((result) =>{
-         console.log(result)
-          var wordEntry = result[0]['heisig']
-          var kanji = result[0]['kanji']
-          return [wordEntry, kanji]
-       })
+    //kanji search
+    let kanjiResults = []
+    fuse = new Fuse(this.heisig, this.kanjiSearchOptions);
+    kanjiResults = word.split('').filter((el) => {
+      return this.isKanji(el);
+    }).map((el) => {
+      return fuse.search(el)
+    }).filter((el) => {
+      return el[0]
+    }).map((result) => {
+      // console.log(result)
+      var wordEntry = result[0]['heisig']
+      var kanji = result[0]['kanji']
+      return [wordEntry, kanji]
+    })
 
-       console.log(kanjiResults)
 
-        heisigResults = kanjiResults.concat(heisigResults);
-        heisigResults = [...new Set(heisigResults)]
+    heisigResults = kanjiResults.concat(heisigResults);
+    heisigResults = heisigResults.map(JSON.stringify).reverse().filter(function (e, i, a) {
+      return a.indexOf(e, i + 1) === -1;
+    }).reverse().map(JSON.parse)
+    console.log(heisigResults)
+    return heisigResults
+  }
 
-      // heisigResults = heisigResults.slice(0,5)
-      console.log(heisigResults)
+  searchForWords(word) {
+    let heisigResults = this.searchHeisig(word)
+
     this.loading.className = "fetching";
 
 
@@ -109,12 +114,11 @@ class App extends Component {
   }
 
   buildWord(word) {
-    let newBuiltWord = this.state.builtWord.concat([word]);
+    let newBuiltWord = this.state.builtWord.concat(word);
     this.setState({builtWord: newBuiltWord});
   }
 
   builtWordChange = (e) => {
-    console.log(e.target)
     this.setState({builtWord: e.target.value})
   }
 
@@ -128,18 +132,20 @@ class App extends Component {
     this.setState({ builtWord: newBuiltWord});
   }
 
-  searchBuiltWord() {
+  searchBuiltWord(e) {
     //Figure out how to work with Heisig Result backwards
+    e.preventDefault()
     this.loading.className = "fetching";
     let that = this;
     let builtWord = this.state.builtWord;
+
     fetch(`https://ancient-sands-74909.herokuapp.com/?keyword=${builtWord}`, { mode: 'cors' }).then((res) => {
       res.json().then(function (resJson) {
         that.loading.className = "fetching hiddenBlock";
-
         let jsonResponse = {};
         jsonResponse = resJson.data;
-        that.setState({ fetching: '', dictionaryResults: jsonResponse, heisigResults: {},error: '', searched: true });
+        let heisigResults = that.searchHeisig(builtWord)
+        that.setState({ fetching: '', dictionaryResults: jsonResponse, heisigResults　,error: '', searched: true });
       });
     }).catch((err) => {
       this.loading.className = "fetching hiddenBlock";
@@ -150,7 +156,6 @@ class App extends Component {
 
 
   render() {
-    console.log(this.state.fetching);
     return (
       <div className="App">
         <header className="App-header">

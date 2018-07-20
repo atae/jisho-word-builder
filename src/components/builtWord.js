@@ -7,6 +7,7 @@ const BuiltWord = (props) => {
     let currentText = props.builtWord
     
     return (
+        <form onSubmit={props.searchBuiltWord}>
         <div className="builtWord">
             <p><strong>Built Word </strong> </p>
             <input 
@@ -16,11 +17,12 @@ const BuiltWord = (props) => {
             value={currentText}>
             </input>
             <div className={buttonsClass}>
-                <button onClick={props.backspaceWord}>Backspace</button>
-                <button onClick={props.clearWord}>Clear Words</button>
-                <button onClick={props.searchBuiltWord}>Search Built Word</button>
+                <button type="button" onClick={props.backspaceWord}>Backspace</button>
+                <button type="button" onClick={props.clearWord}>Clear Words</button>
+                <button type="submit" >Search Built Word</button>
             </div>
-        </div>
+            </div>
+        </form>
     );
 };
 
