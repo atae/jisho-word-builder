@@ -19,9 +19,9 @@ class HeisigEntries extends React.Component {
     render () {
         let heisigEntries = this.generateEntries() 
         return (
-            <div className="heisig-entries">
             <div className="heisig">
             <h3> Heisig Results: </h3>
+            <div className="heisig-entries">
             { heisigEntries }
              </div>
              <hr />
