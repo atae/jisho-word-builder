@@ -1,6 +1,7 @@
 import React from 'react';
 import '../Dictionary.css';
 import HeisigEntry from './heisigEntry';
+// import {CSSTransitionGroup} from 'react-transition-group';
 
 
 class HeisigEntries extends React.Component {
@@ -18,15 +19,15 @@ class HeisigEntries extends React.Component {
     render () {
         let heisigEntries = this.generateEntries() 
         return (
-        <div className="heisig">
-            <h3> Heisig Results: </h3>
             <div className="heisig-entries">
-             { heisigEntries }
-            </div>
-            <hr />
-
-        </div>
-    );
+            <div className="heisig">
+            <h3> Heisig Results: </h3>
+            { heisigEntries }
+             </div>
+             <hr />
+             
+             </div>
+            );
     }
 
 };

@@ -23,7 +23,7 @@ class App extends Component {
     this.searchHeisig = this.searchHeisig.bind(this);
     this.heisigSearchOptions = {
       shouldSort: true,
-      threshold: 0.1,
+      threshold: 0.2,
       location: 0,
       distance: 100,
       maxPatternLength: 32,
@@ -114,7 +114,7 @@ class App extends Component {
   }
 
   buildWord(word) {
-    let newBuiltWord = this.state.builtWord.concat(word);
+    let newBuiltWord = this.state.builtWord + word;
     this.setState({builtWord: newBuiltWord});
   }
 
