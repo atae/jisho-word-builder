@@ -4,7 +4,7 @@ import '../Dictionary.css';
 const HeisigEntry = (props) => {
 
     return (
-            <div>
+        <div class="animated fadeIn">
                 <h2> {props.entry[1]} </h2>
                 <p> {props.entry[0]} </p>
                 <div>

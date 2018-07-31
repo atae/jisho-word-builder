@@ -31,7 +31,7 @@ class DictionaryEntryIndex extends Component {
         let entries = this.generateDictionaryEntries();
         return (
             
-            <div className="container">
+            <div className="container animated fadeIn">
                 {Object.keys(this.props.heisigEntries).length !== 0 ? <HeisigEntries searchForWords={this.props.searchForWords} buildWord={this.props.buildWord} entries={this.props.heisigEntries} /> : ''}
                 {entries}
             </div>
