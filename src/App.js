@@ -5,6 +5,7 @@ import SearchBar from './components/searchBar';
 import BuiltWord from './components/builtWord';
 import DictionaryEntryIndex from './components/dictionaryEntryIndex';
 import heisigToKanji from './heisigToKanjiExpandedStructure.json';
+import HistoryWidget from './components/historyWidget';
 import Fuse from 'fuse.js'
 // import kanjiToHeisig from 'kanjiToHeisig.json';
 
@@ -170,6 +171,7 @@ class App extends Component {
           backspaceWord={this.backspaceWord}
           clearWord={this.clearWord} 
           searchBuiltWord={this.searchBuiltWord}/>
+          <HistoryWidget/>
           <div ref={(input) => {this.loading = input;}} className="fetching hiddenBlock">
             <p>Fetching Data...</p>
           </div>

@@ -1,0 +1,25 @@
+.history-widget {
+    box-sizing: border-box;
+    position: fixed;
+    border: 2px solid black;
+    bottom: 0;
+    width: 75px;
+    height:75px;
+    left: 90%;
+    z-index: 500;
+    /* left: 0; */
+    background-color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 100%;
+        transition: border,
+        .75s;
+
+}
+
+.history-widget:hover {
+    box-sizing: border-box;
+    border: 2px solid black;
+    transition: border, .75s;
+}

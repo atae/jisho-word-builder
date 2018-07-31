@@ -7,6 +7,7 @@ html, body, #root {
   height: 100%;
 }
 
+
 .App-logo {
   animation: App-logo-spin infinite 20s linear;
   height: 80px;
@@ -20,9 +21,9 @@ html, body, #root {
   color: white;
 }
 @media(max-width: 767px) {
-.App-header{
-  margin-top: 70px;
-}
+  .App-header{
+    margin-top: 70px;
+  }
 }
 
 button {
@@ -35,6 +36,12 @@ button {
   margin-bottom: 30px;
   padding: 10px;
   margin-top: 10px;
+  box-shadow:2px 2px #AAA;
+      transition: box-shadow,
+      .5s;
+    transition: background-color,
+    .5s;
+
 }
 
 h1, h2, h3 {
@@ -43,9 +50,10 @@ h1, h2, h3 {
 
 button:hover {
   background-color: #469CF1;
-    transition: background-color,
-    .75s,
-    ease;
+  box-shadow: 1px 1px #AAA;
+  cursor: pointer;
+    transition: background-color, .5s;
+    transition: box-shadow, .5s
 
 }
 input {
@@ -84,4 +92,23 @@ input {
 .footer {
   font-size: 10px;
   margin: 20px;
+}
+
+.sticky-nav {
+  position: fixed;
+  border-bottom: 1px solid black;
+  top: 0;
+  width: 100%;
+  right: 50%;
+  z-index: 500;
+  left: 0;
+  background-color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-top: 20px;
+}
+
+.justify-end{
+  margin-left:auto;
 }
