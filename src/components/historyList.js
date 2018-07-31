@@ -9,7 +9,7 @@ class HistoryList extends React.Component {
 
 
     render() {
-        let hiddenMode = this.props.open === 'false' ? "hidden fadeOutDown" : "fadeInRight"
+        let hiddenMode = this.props.listClass
         return (
             <div className={"animated history-widget-list " + hiddenMode}>
                 <div className="history-item">

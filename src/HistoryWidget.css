@@ -1,6 +1,5 @@
 .history-widget {
     position: fixed;
-    display:flex;
     flex-direction:column;
     bottom: 0;
     right: 25px;
@@ -10,6 +9,7 @@
     display: flex;
     justify-content: center;
     align-items: flex-end;
+     
 }
 
 .history-widget>button {
@@ -28,8 +28,16 @@
     transition: border, .25s;
 }
 
+.history-widget-list {
+
+}
+
 .history-item {
     border: 1px solid black;
     padding: 10px;
     min-width: 75px;
 }
+
+.fadeInRight {
+}
+

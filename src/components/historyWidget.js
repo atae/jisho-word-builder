@@ -6,18 +6,18 @@ class HistoryWidget extends React.Component {
     constructor() {
         super()
         this.state = {
-            open: 'false'
+            listClass: 'hidden'
         }
     }
 
     onClickHandler = () => {
-        this.setState({ open: this.state.open === 'true' ? 'false' : 'true' })
+        this.setState({ listClass: this.state.listClass === 'fadeInRight' ? 'fadeOutRight' : 'fadeInRight' })
     }
 
     render() {
         return(
             <div className="history-widget">
-            <HistoryList open={this.state.open}/>
+            <HistoryList listClass={this.state.listClass} />
             <button onClick={this.onClickHandler} className='animated fadeIn' > History </button>
             </div>
         )   
