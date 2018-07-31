@@ -36,11 +36,11 @@ button {
   margin-bottom: 30px;
   padding: 10px;
   margin-top: 10px;
-  box-shadow:2px 2px #AAA;
+  box-shadow:3px 3px #AAA;
       transition: box-shadow,
-      .5s;
+      .1s;
     transition: background-color,
-    .5s;
+    .25s;
 
 }
 
@@ -50,17 +50,26 @@ h1, h2, h3 {
 
 button:hover {
   background-color: #469CF1;
-  box-shadow: 1px 1px #AAA;
   cursor: pointer;
-    transition: background-color, .5s;
-    transition: box-shadow, .5s
-
+  
+    transition: background-color, .25s;
 }
+
+button:active {
+  background-color: rgba(0, 38, 255, 0.71);
+  box-shadow: -1px -1px #555;
+      transition: box-shadow,
+      .1s;
+  transform: translate(1px, 1px);
+}
+
 input {
   font-size: 16px;
   margin-right: 10px;
   padding-left: 5px;
   border: 1px solid black;
+  box-shadow: 1px 1px #999;
+
 }
 
 .App-title {

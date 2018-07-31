@@ -1,25 +1,35 @@
 .history-widget {
-    box-sizing: border-box;
     position: fixed;
-    border: 2px solid black;
+    display:flex;
+    flex-direction:column;
     bottom: 0;
-    width: 75px;
-    height:75px;
-    left: 90%;
+    right: 25px;
     z-index: 500;
     /* left: 0; */
     background-color: white;
     display: flex;
     justify-content: center;
-    align-items: center;
-    border-radius: 100%;
-        transition: border,
-        .75s;
-
+    align-items: flex-end;
 }
 
-.history-widget:hover {
+.history-widget>button {
     box-sizing: border-box;
     border: 2px solid black;
-    transition: border, .75s;
+    width: 75px;
+    height:75px;
+    border-radius: 100%;
+    transition: border,
+    .25s;
+}
+
+.history-widget > button :hover {
+    box-sizing: border-box;
+    border: 2px solid black;
+    transition: border, .25s;
+}
+
+.history-item {
+    border: 1px solid black;
+    padding: 10px;
+    min-width: 75px;
 }

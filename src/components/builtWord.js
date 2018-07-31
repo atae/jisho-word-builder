@@ -17,13 +17,13 @@ const BuiltWord = (props) => {
             value={currentText}>
             </input>
             <div className={buttonsClass}>
-                <button type="button" onClick={props.backspaceWord}>Backspace</button>
-                <button type="button" onClick={props.clearWord}>Clear Words</button>
-                <button type="submit" >Search Built Word</button>
+            <button type="button" onClick={props.clearWord}>Clear Words</button>
+            <button type="submit" >Search Built Word</button>
             </div>
             </div>
-        </form>
-    );
-};
+            </form>
+        );
+    };
+    // <button type="button" onClick={props.backspaceWord}>Backspace</button>
 
 export default BuiltWord;
