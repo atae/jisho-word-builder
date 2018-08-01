@@ -123,3 +123,7 @@ input {
 .justify-end{
   margin-left:auto;
 }
+
+.splash-message {
+  padding-bottom: 50px;
+}

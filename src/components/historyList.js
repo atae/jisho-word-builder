@@ -21,11 +21,11 @@ class HistoryList extends React.Component {
 
         return (
             <div className={"animated history-widget-list " + hiddenMode}>
-                <div className="history-item" style={{ "borderBottom": "none" }}>
-                    <p> Search History </p>
+                <div className="history-item history-item-header" style={{ "borderBottom": "none" }}>
+                    <p><strong> Your Search History </strong></p>
                 </div>
                 {historyItems}
-                <div className="history-item history-item-button" style={{"borderBottom": "1px solid black"}}>
+                <div onClick={this.props.clearHistory} className="history-item history-item-button" style={{"borderBottom": "2px solid black"}}>
                     <p> Clear History </p>
                 </div>
 

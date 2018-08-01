@@ -23,6 +23,7 @@ class HistoryWidget extends React.Component {
         return(
             <div className="history-widget">
                 <HistoryList 
+                clearHistory={this.props.clearHistory}
                 history={this.props.history}
                  searchForWords={this.props.searchForWords}
                 listClass={this.state.listClass} />

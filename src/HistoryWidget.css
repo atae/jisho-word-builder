@@ -9,8 +9,7 @@
     display: flex;
     justify-content: center;
     align-items: flex-end;
-     background:none;
-    }
+     background:none;    }
 
 .history-widget>button {
     box-sizing: border-box;
@@ -44,8 +43,12 @@
     z-index: 502;
 }
 
+.history-item-header {
+    height: 50px;
+}
+
 .history-item {
-    border: 1px solid black;
+    border: 2px solid black;
     border-bottom: none;
     padding: 10px;
     min-width: 175px;
@@ -55,7 +58,7 @@
 
 .history-item-button {
     background-color: white;
-    box-shadow: 3px 3px #AAA;
+    box-shadow: 2px 2px #AAA;
     transition: box-shadow,
     .1s;
     transition: background-color,
