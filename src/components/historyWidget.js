@@ -19,10 +19,13 @@ class HistoryWidget extends React.Component {
     }
 
     render() {
-        
+        console.log(this.props.searchForWords)
         return(
             <div className="history-widget">
-                <HistoryList history={this.props.history} listClass={this.state.listClass} />
+                <HistoryList 
+                history={this.props.history}
+                 searchForWords={this.props.searchForWords}
+                listClass={this.state.listClass} />
                 <button onClick={this.onClickHandler} className={'animated fadeIn ' + this.state.buttonClass}  > History </button>
             </div>
         )   

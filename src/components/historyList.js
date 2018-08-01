@@ -8,8 +8,8 @@ class HistoryList extends React.Component {
     }
 
     renderHistoryItems = () => {
-       return this.props.history.map((historyItem) => {
-        return [<HistoryItem historyItem = {historyItem} />]
+       return this.props.history.map((historyItem, i) => {
+           return [<HistoryItem key={'historyItem' + i} searchForWords={this.props.searchForWords} historyItem = {historyItem} />]
        })
     }
 
@@ -17,14 +17,16 @@ class HistoryList extends React.Component {
     render() {
         let hiddenMode = this.props.listClass
         let historyItems = this.renderHistoryItems();
+        console.log(this.props.searchForWords)
+
         return (
             <div className={"animated history-widget-list " + hiddenMode}>
                 <div className="history-item" style={{ "borderBottom": "none" }}>
-                    <h4> Search History </h4>
+                    <p> Search History </p>
                 </div>
                 {historyItems}
-                <div className="history-item" style={{"borderBottom": "1px solid black"}}>
-                    <h4> Clear History </h4>
+                <div className="history-item history-item-button" style={{"borderBottom": "1px solid black"}}>
+                    <p> Clear History </p>
                 </div>
 
             </div>

@@ -4,8 +4,8 @@ import '../HistoryWidget.css';
 const HistoryItem = (props) => {
 
     return (
-        <div class="history-item">
-            <p> {props.historyItem} </p>
+        <div className="history-item history-item-button">
+            <p onClick={() => {props.searchForWords(props.historyItem, 'history')}}> {props.historyItem} </p>
         </div>
     );
 

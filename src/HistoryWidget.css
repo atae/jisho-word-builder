@@ -23,15 +23,12 @@
     transition: width,
     .75s;
         outline: 0;
-
-
 }
 
 .history-widget > button :hover {
     box-sizing: border-box;
     border: 2px solid black;
     transition: border, .25s;
- 
 }
 
 .expanded {
@@ -51,9 +48,34 @@
     border: 1px solid black;
     border-bottom: none;
     padding: 10px;
-    min-width: 75px;
+    min-width: 175px;
     max-width: 280px;
+   
 }
+
+.history-item-button {
+    background-color: white;
+    box-shadow: 3px 3px #AAA;
+    transition: box-shadow,
+    .1s;
+    transition: background-color,
+    .25s;
+    outline: 0;
+}
+
+.history-item-button:hover {
+    background-color: #469CF1;
+    cursor: pointer;
+    transition: background-color, .25s;
+}
+
+.history-item-button:active {
+    background-color: rgba(0, 38, 255, 0.71);
+    box-shadow: -1px -1px #555;
+    transition: box-shadow, .1s;
+    transform: translate(1px, 1px);
+}
+
 
 .fadeInRight {
 }

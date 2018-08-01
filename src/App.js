@@ -88,7 +88,7 @@ class App extends Component {
     return heisigResults
   }
 
-  searchForWords(word) {
+  searchForWords(word, searchMode) {
     let heisigResults = this.searchHeisig(word)
 
 
@@ -103,7 +103,10 @@ class App extends Component {
 
         let jsonResponse = {};
         jsonResponse = resJson.data;
-        let newHistory = that.state.searchHistory.concat(word)
+        let newHistory = that.state.searchHistory
+        if (searchMode !== 'history') {
+          newHistory = newHistory.concat(word)
+        }
         that.setState({ fetching: '', dictionaryResults: jsonResponse, heisigResults, error: '', searched: true, searchHistory: newHistory });
       });
     }).catch((err) => {
@@ -175,7 +178,8 @@ class App extends Component {
           backspaceWord={this.backspaceWord}
           clearWord={this.clearWord} 
           searchBuiltWord={this.searchBuiltWord}/>
-          <HistoryWidget history={this.state.searchHistory} />
+        <HistoryWidget searchForWords={this.searchForWords}
+      history={this.state.searchHistory} />
           <div ref={(input) => {this.loading = input;}} className="fetching hiddenBlock">
             <p>Fetching Data...</p>
           </div>

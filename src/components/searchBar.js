@@ -19,7 +19,8 @@ class SearchBar extends Component{
         return(
             <div className="search" >
                 <form>
-                    <input 
+                    <input
+                    maxlength="255" 
                     type="text"
                     onChange={this.onChangeHandler}
                     ref={(input) => { this.searchBarWord = input; }} 
