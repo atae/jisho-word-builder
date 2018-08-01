@@ -29,6 +29,7 @@ html, body, #root {
 button {
   font-size: 14px;
   border-radius: 10px;
+  position:relative;
   /* margin-top: -10px; */
   /* max-width: 100px; */
   background-color: white;
@@ -41,6 +42,7 @@ button {
       .1s;
     transition: background-color,
     .25s;
+        outline:0;
 
 }
 

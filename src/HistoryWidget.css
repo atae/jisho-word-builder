@@ -9,8 +9,8 @@
     display: flex;
     justify-content: center;
     align-items: flex-end;
-     
-}
+     background:none;
+    }
 
 .history-widget>button {
     box-sizing: border-box;
@@ -20,20 +20,36 @@
     border-radius: 100%;
     transition: border,
     .25s;
+    transition: width,
+    .75s;
+        outline: 0;
+
+
 }
 
 .history-widget > button :hover {
     box-sizing: border-box;
     border: 2px solid black;
     transition: border, .25s;
+ 
+}
+
+.expanded {
+    width: 100% !important;
+    border-radius: 0% !important;
+    transition: border, .75s;
+    transition: width, .75s;
 }
 
 .history-widget-list {
-
+    box-shadow: 2px 2px #999;
+    background:white;
+    z-index: 502;
 }
 
 .history-item {
     border: 1px solid black;
+    border-bottom: none;
     padding: 10px;
     min-width: 75px;
 }
