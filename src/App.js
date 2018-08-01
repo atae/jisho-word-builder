@@ -14,7 +14,7 @@ class App extends Component {
   constructor() {
     super();
     //Add mouseover on Kanji to show Heisig keyword
-    this.state = {fetching: '', dictionaryResults: {}, builtWord: "", heisigResults: {}, searched: false, error: ''};
+    this.state = { fetching: '', searchHistory : [],  dictionaryResults: {}, builtWord: "", heisigResults: {}, searched: false, error: ''};
     this.buildWord = this.buildWord.bind(this);
     this.clearWord = this.clearWord.bind(this);
     this.backspaceWord = this.backspaceWord.bind(this);
@@ -91,6 +91,7 @@ class App extends Component {
   searchForWords(word) {
     let heisigResults = this.searchHeisig(word)
 
+
     this.loading.className = "fetching";
 
 
@@ -102,7 +103,8 @@ class App extends Component {
 
         let jsonResponse = {};
         jsonResponse = resJson.data;
-        that.setState({ fetching: '', dictionaryResults: jsonResponse, heisigResults, error: '', searched: true });
+        let newHistory = that.state.searchHistory.concat(word)
+        that.setState({ fetching: '', dictionaryResults: jsonResponse, heisigResults, error: '', searched: true, searchHistory: newHistory });
       });
     }).catch((err) => {
       this.loading.className = "fetching hiddenBlock";
@@ -146,7 +148,9 @@ class App extends Component {
         let jsonResponse = {};
         jsonResponse = resJson.data;
         let heisigResults = that.searchHeisig(builtWord)
-        that.setState({ fetching: '', dictionaryResults: jsonResponse, heisigResults　,error: '', searched: true });
+        let newHistory = that.state.searchHistory.concat(builtWord)
+
+        that.setState({ fetching: '', dictionaryResults: jsonResponse, heisigResults　, error: '', searched: true, searchHistory: newHistory });
       });
     }).catch((err) => {
       this.loading.className = "fetching hiddenBlock";
@@ -171,7 +175,7 @@ class App extends Component {
           backspaceWord={this.backspaceWord}
           clearWord={this.clearWord} 
           searchBuiltWord={this.searchBuiltWord}/>
-          <HistoryWidget/>
+          <HistoryWidget history={this.state.searchHistory} />
           <div ref={(input) => {this.loading = input;}} className="fetching hiddenBlock">
             <p>Fetching Data...</p>
           </div>

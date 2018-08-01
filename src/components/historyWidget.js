@@ -3,8 +3,8 @@ import HistoryList from './historyList';
 import '../HistoryWidget.css';
 
 class HistoryWidget extends React.Component {
-    constructor() {
-        super()
+    constructor(props) {
+        super(props)
         this.state = {
             listClass: 'hidden',
             buttonClass: ''
@@ -22,7 +22,7 @@ class HistoryWidget extends React.Component {
         
         return(
             <div className="history-widget">
-                <HistoryList listClass={this.state.listClass} />
+                <HistoryList history={this.props.history} listClass={this.state.listClass} />
                 <button onClick={this.onClickHandler} className={'animated fadeIn ' + this.state.buttonClass}  > History </button>
             </div>
         )   

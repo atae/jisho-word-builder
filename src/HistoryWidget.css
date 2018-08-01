@@ -52,6 +52,7 @@
     border-bottom: none;
     padding: 10px;
     min-width: 75px;
+    max-width: 280px;
 }
 
 .fadeInRight {

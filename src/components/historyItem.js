@@ -5,7 +5,7 @@ const HistoryItem = (props) => {
 
     return (
         <div class="history-item">
-            <p> History Goes Here </p>
+            <p> {props.historyItem} </p>
         </div>
     );
 
