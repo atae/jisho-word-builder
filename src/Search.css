@@ -1,3 +1,15 @@
 .search{
     margin-top: 50px;
+    display: flex;
+    justify-content: center;
+    vertical-align: baseline;
+}
+
+.clear-search {
+    margin-left: 10px;
+}
+
+.search > input {
+    height: min-content;
+    margin: 20px 20px 0 0;
 }

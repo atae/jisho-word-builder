@@ -17,18 +17,22 @@ class SearchBar extends Component{
 
     render() {
         return(
-            <div className="search" >
-                <form>
-                    <input 
+            <div>
+                <form onSubmit={(e) => {
+                    e.preventDefault();
+                    this.props.submitHandler(this.state.searchWord);
+                }} className="search">         
+                    <input
+                    maxlength="255" 
                     type="text"
                     onChange={this.onChangeHandler}
                     ref={(input) => { this.searchBarWord = input; }} 
                     value={this.state.searchWord}/>
-                    <button onClick={(e) => {
-                        e.preventDefault();
-                        this.props.submitHandler(this.state.searchWord);}} >
-                        Search
-                    </button>
+                    <div className="formButtons">
+                        <button type="submit" > Search
+                        </button>
+                        <button type="button"  className="clear-search" onClick={this.props.clearSearch}>Clear</button>
+                    </div>
                 </form>
             </div>
         );

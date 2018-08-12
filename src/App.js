@@ -5,6 +5,7 @@ import SearchBar from './components/searchBar';
 import BuiltWord from './components/builtWord';
 import DictionaryEntryIndex from './components/dictionaryEntryIndex';
 import heisigToKanji from './heisigToKanjiExpandedStructure.json';
+import HistoryWidget from './components/historyWidget';
 import Fuse from 'fuse.js'
 // import kanjiToHeisig from 'kanjiToHeisig.json';
 
@@ -13,7 +14,7 @@ class App extends Component {
   constructor() {
     super();
     //Add mouseover on Kanji to show Heisig keyword
-    this.state = {fetching: '', dictionaryResults: {}, builtWord: "", heisigResults: {}, searched: false, error: ''};
+    this.state = { fetching: '', searchHistory : [],  dictionaryResults: {}, builtWord: "", heisigResults: {}, searched: false, error: ''};
     this.buildWord = this.buildWord.bind(this);
     this.clearWord = this.clearWord.bind(this);
     this.backspaceWord = this.backspaceWord.bind(this);
@@ -87,8 +88,9 @@ class App extends Component {
     return heisigResults
   }
 
-  searchForWords(word) {
+  searchForWords(word, searchMode) {
     let heisigResults = this.searchHeisig(word)
+
 
     this.loading.className = "fetching";
 
@@ -101,7 +103,11 @@ class App extends Component {
 
         let jsonResponse = {};
         jsonResponse = resJson.data;
-        that.setState({ fetching: '', dictionaryResults: jsonResponse, heisigResults, error: '', searched: true });
+        let newHistory = that.state.searchHistory
+        if (searchMode !== 'history') {
+          newHistory = newHistory.concat(word)
+        }
+        that.setState({ fetching: '', dictionaryResults: jsonResponse, heisigResults, error: '', searched: true, searchHistory: newHistory });
       });
     }).catch((err) => {
       this.loading.className = "fetching hiddenBlock";
@@ -145,7 +151,9 @@ class App extends Component {
         let jsonResponse = {};
         jsonResponse = resJson.data;
         let heisigResults = that.searchHeisig(builtWord)
-        that.setState({ fetching: '', dictionaryResults: jsonResponse, heisigResults　,error: '', searched: true });
+        let newHistory = that.state.searchHistory.concat(builtWord)
+
+        that.setState({ fetching: '', dictionaryResults: jsonResponse, heisigResults　, error: '', searched: true, searchHistory: newHistory });
       });
     }).catch((err) => {
       this.loading.className = "fetching hiddenBlock";
@@ -154,8 +162,25 @@ class App extends Component {
     });
   }
 
+  generateSplashMessage = () => {
+    return (
+      <div className="splash-message">
+        <p> Enter any Kanji, Heisig Keyword, or English/Japanese sentences in the box above.</p>
+        <p> Use the 'Build Word' button to create kanji compounds based on your search results. </p>
+      </div>
+    )
+  }
+
+  clearSearch = () => {
+    this.setState({ dictionaryResults: {}, heisigResults: {}, searched: false, error: ''})
+  }
+
+  clearHistory = () => {
+    this.setState({searchHistory: []})
+  }
 
   render() {
+    let splashMessage = this.generateSplashMessage()
     return (
       <div className="App">
         <header className="App-header">
@@ -163,13 +188,16 @@ class App extends Component {
           <h1 className="App-title">Heisig-Jisho Word Builder</h1>
         </header>
         
-        <SearchBar submitHandler={this.searchForWords}/>
+        <SearchBar submitHandler={this.searchForWords} clearSearch={this.clearSearch}/>
         <BuiltWord 
           builtWordChange={this.builtWordChange}
           builtWord={this.state.builtWord} 
           backspaceWord={this.backspaceWord}
           clearWord={this.clearWord} 
           searchBuiltWord={this.searchBuiltWord}/>
+        <HistoryWidget searchForWords={this.searchForWords}
+        clearHistory={this.clearHistory}
+      history={this.state.searchHistory} />
           <div ref={(input) => {this.loading = input;}} className="fetching hiddenBlock">
             <p>Fetching Data...</p>
           </div>
@@ -182,6 +210,8 @@ class App extends Component {
           dictionaryEntries={this.state.dictionaryResults} 
           heisigEntries={this.state.heisigResults}
           searched={this.state.searched} />
+
+          {Object.keys(this.state.dictionaryResults).length === 0 ? splashMessage: ''}
         <div className="footer">
           <p>This site uses some heisig json and the Official Unofficial Jisho.org API</p>
           <p> Andrew Tae 2018 </p>
