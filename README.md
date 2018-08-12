@@ -20,9 +20,9 @@ If you wanted to look up the word 一網打尽, you could take the following act
 There are multiple ways to lookup a word, but so far these tools allow the user to improvise and use whatever method they'd like depending on how much of the word they already know.
     
 # Technologies Used
-React
-Jisho.org Unofficial Official API
-Node for CORS
+-React
+-Jisho.org Unofficial Official API
+-Node for CORS
 
 ## Upcoming features
 - J-J dictionary mode
