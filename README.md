@@ -17,7 +17,7 @@ I am actually actively using this application and am always looking for ways to 
     3. Look up 'utsu' or ’うつ’, click on 'Add 打つ to built word.' and delete the つ
     4. You can click on 'Search built word' at this point and the underlying Jisho.org API will complete the kanji compound for you if it's well known and  defined in its dictionary.
     
-    There are multiple ways to lookup a word, but so far these tools allow the user to improvise and use whatever method they'd like depending on how much of the word they already know.
+There are multiple ways to lookup a word, but so far these tools allow the user to improvise and use whatever method they'd like depending on how much of the word they already know.
     
 # Technologies Used
 React
