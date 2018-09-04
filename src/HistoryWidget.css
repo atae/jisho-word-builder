@@ -1,3 +1,4 @@
+
 .history-widget {
     position: fixed;
     flex-direction:column;
@@ -9,7 +10,10 @@
     display: flex;
     justify-content: center;
     align-items: flex-end;
-     background:none;    }
+     background:none;   
+     }
+
+
 
 .history-widget>button {
     box-sizing: border-box;
@@ -22,6 +26,7 @@
     transition: width,
     .75s;
         outline: 0;
+
 }
 
 .history-widget > button :hover {
@@ -83,3 +88,11 @@
 .fadeInRight {
 }
 
+.fadeOutRight {
+    /* height: 0px;
+    width: 0px; */
+    /* transition-delay: 2s;
+    transition: height 1s, */
+    /* width 1s; */
+    z-index:0;
+}

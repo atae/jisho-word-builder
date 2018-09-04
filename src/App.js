@@ -5,6 +5,7 @@ import SearchBar from './components/searchBar';
 import BuiltWord from './components/builtWord';
 import DictionaryEntryIndex from './components/dictionaryEntryIndex';
 import heisigToKanji from './heisigToKanjiExpandedStructure.json';
+// import rtk4HeisigToKanji from './theCiteRTK4.json'
 import HistoryWidget from './components/historyWidget';
 import Fuse from 'fuse.js'
 // import kanjiToHeisig from 'kanjiToHeisig.json';
