@@ -14,7 +14,8 @@ html, body, #root {
 }
 
 .App-header {
-  background-color: #222;
+  background-color: #31393c;
+  
   /* height: 200px; */
   padding: 20px;
   /* padding-top: 130px; */
@@ -23,14 +24,36 @@ html, body, #root {
 }
 
 .App-header h1 {
-  padding-top: 60px;
+  
+  /* padding-top: 120px; */
   font-size: 80px;
   color: #469CF1;
+  opacity: 0.5;
+  display:inline;
+  /* width: 0px; */
+  margin: 0 auto;
   /* background-color: red; */
+    transition: opacity .75s ease-in-out;
+
 }
 
+.App-header h1:hover {
+  opacity: 1;
+  transition: opacity .75s ease-in-out;
+}
+
+.App-header h2{
+  /* color:#f79824; */
+    font-family: polaris;
+
+}
 .App-header h3{
   padding-bottom: 40px;
+  padding-top: 10px;
+    font-family: polaris;
+    font-size: 24px;
+
+  /* color:#fdca40; */
 }
 @media(max-width: 767px) {
   .App-header{
@@ -63,14 +86,14 @@ h1, h2, h3 {
 }
 
 button:hover {
-  background-color: #469CF1;
+  background-color: #fdca40;
   cursor: pointer;
   
     transition: background-color, .25s;
 }
 
 button:active {
-  background-color: rgba(0, 38, 255, 0.71);
+  background-color: #f79824;
   box-shadow: -1px -1px #555;
       transition: box-shadow,
       .1s;

@@ -195,7 +195,7 @@ class App extends Component {
         <header className="App-header">
           <h1>雛</h1>
           <h2>Hiyoko Jisho</h2>
-          <h3>Intermediate Heisig-Jisho Word Builder Dictionary</h3>
+          <h3>Intermediate Japanese Word Builder Dictionary</h3>
         </header>
         
         <SearchBar submitHandler={this.searchForWords} clearSearch={this.clearSearch}/>
@@ -225,7 +225,7 @@ class App extends Component {
           {Object.keys(this.state.dictionaryResults).length === 0 ? splashMessage: ''}
         <div className="footer">
           <p>This site uses some heisig json and the Official Unofficial Jisho.org API</p>
-          <p> Andrew Tae 2018 </p>
+          <a href="https://www.github.com/atae/" target="_blank" rel='noreferrer noopener'> Andrew Tae</a> <p> 2018 </p>
         </div>
       </div>
     );

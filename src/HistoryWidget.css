@@ -72,13 +72,13 @@
 }
 
 .history-item-button:hover {
-    background-color: #469CF1;
+  background-color: #fdca40;
     cursor: pointer;
     transition: background-color, .25s;
 }
 
 .history-item-button:active {
-    background-color: rgba(0, 38, 255, 0.71);
+  background-color: #f79824;
     box-shadow: -1px -1px #555;
     transition: box-shadow, .1s;
     transform: translate(1px, 1px);
