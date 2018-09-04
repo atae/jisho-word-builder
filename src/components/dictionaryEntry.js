@@ -12,12 +12,12 @@ const DictionaryEntry = (props) => {
                     <p>{props.entry.japanese[0].word ? props.entry.japanese[0].reading : ""}</p>
                     <div>
                         <button 
+                        className="sense-button"
                         onClick={() => { props.buildWord(featuredWord); }}>
                         Add {featuredWord} to Built Word
                         </button>
-                    </div>
-                    <div>
                         <button
+                            className="sense-button"
                             onClick={() => { props.newBuildWord(featuredWord); }}>
                             Add {featuredWord} to New Built Word
                         </button>

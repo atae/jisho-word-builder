@@ -49,8 +49,14 @@ class App extends Component {
     }
   }
 
+ 
+
   isKanji = (ch) => {
     return !!ch.match(/[\u4E00-\u9FAF\u3040-\u3096\u30A1-\u30FA\uFF66-\uFF9D\u31F0-\u31FF]/);
+  }
+
+  componentDidMount() {
+    window.scrollTo(0,0)
   }
 
   searchHeisig(word) {
@@ -107,9 +113,11 @@ class App extends Component {
         let jsonResponse = {};
         jsonResponse = resJson.data;
         let newHistory = that.state.searchHistory
-        if (searchMode !== 'history') {
+        if (searchMode !== 'history' && !newHistory.includes(word) && word != '') {
           newHistory = newHistory.concat(word)
         }
+        window.scrollTo(0, 0)
+
         that.setState({ fetching: '', dictionaryResults: jsonResponse, heisigResults, error: '', searched: true, searchHistory: newHistory });
       });
     }).catch((err) => {
@@ -160,6 +168,7 @@ class App extends Component {
         jsonResponse = resJson.data;
         let heisigResults = that.searchHeisig(builtWord)
         let newHistory = that.state.searchHistory.concat(builtWord)
+        window.scrollTo(0, 0)
 
         that.setState({ fetching: '', dictionaryResults: jsonResponse, heisigResults　, error: '', searched: true, searchHistory: newHistory });
       });

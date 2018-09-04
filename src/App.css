@@ -5,6 +5,7 @@ html, body, #root {
 .App {
   text-align: center;
   height: 100%;
+  width:100%;
 }
 
 
@@ -19,7 +20,7 @@ html, body, #root {
   /* height: 200px; */
   padding: 20px;
   /* padding-top: 130px; */
-  margin-top:70px;
+  margin-top:30px;
   color: white;
    
 }
@@ -126,7 +127,7 @@ button {
   margin-bottom: 30px;
   padding: 10px;
   margin-top: 10px;
-  box-shadow:3px 3px #AAA;
+  box-shadow:3px 3px rgba(0,0,0,0.5);
       transition: box-shadow,
       .1s;
     transition: background-color,
@@ -136,7 +137,7 @@ button {
 }
 
 h1, h2, h3 {
-  font-family:polaris-bold;
+  font-family:polaris;
 }
 
 button:hover {
@@ -215,4 +216,18 @@ input {
 
 .splash-message {
   padding-bottom: 50px;
+}
+
+@media(max-width:480px) {
+  /* .App-header h1 {
+    padding-top: 20px;
+  } */
+
+  .formButtons > button {
+    margin-bottom: 10px;
+  }
+
+  .splash-message{
+    padding-bottom: 20px;
+  }
 }
