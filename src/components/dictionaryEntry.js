@@ -10,7 +10,7 @@ const DictionaryEntry = (props) => {
                     <div className="col-md-3 col-xs-6">
                     <h2>{featuredWord}</h2>
                     <p>{props.entry.japanese[0].word ? props.entry.japanese[0].reading : ""}</p>
-                    <div>
+                    <div className="sense-button-container">
                         <button 
                         className="sense-button"
                         onClick={() => { props.buildWord(featuredWord); }}>

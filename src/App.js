@@ -234,7 +234,11 @@ class App extends Component {
           {Object.keys(this.state.dictionaryResults).length === 0 ? splashMessage: ''}
         <div className="footer">
           <p>This site uses some heisig json and the Official Unofficial Jisho.org API</p>
-          <a href="https://www.github.com/atae/" target="_blank" rel='noreferrer noopener'> Andrew Tae</a> <p> 2018 </p>
+          <p>Issues? New Feature Ideas? <a href="https://github.com/atae/jisho-word-builder/issues " target="_blank" rel='noreferrer noopener'> Support/Issues </a> </p>
+          
+          <a href="https://github.com/atae/jisho-word-builder" target="_blank" rel='noreferrer noopener'> Hiyoko Jisho Github </a> <br/> <br/>
+          <a href="https://www.github.com/atae/" target="_blank" rel='noreferrer noopener'> Andrew Tae</a>
+
         </div>
       </div>
     );

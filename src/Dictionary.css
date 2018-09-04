@@ -94,6 +94,15 @@ sup {
     }
 }
 
-.sense-buton {
-    margin-bottom: 10px;
+.sense-button {
+    margin-bottom: 5px;
+}
+
+.sense-button:last-child {
+    margin-bottom: 20px;
+}
+
+.sense-button-container {
+    display:flex;
+    flex-direction: column;
 }
