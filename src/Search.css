@@ -13,3 +13,26 @@
     height: 30px;
     margin: 20px 20px 0 0;
 }
+
+@media (max-width:576px) {
+    .search > input {
+        width: 60%;
+        margin: 0 auto;
+    }
+
+    .App-header > h1 {
+        font-size: 60px;
+        padding-bottom: 10px;
+        opacity: 1;
+    }
+
+    .App-header>h2 {
+        font-size: 32px;
+    }
+    .App-header>h3 {
+        font-size: 20px;
+    }
+    .search {
+        flex-direction: column;
+    }
+}

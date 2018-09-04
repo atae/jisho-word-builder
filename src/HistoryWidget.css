@@ -1,5 +1,5 @@
 
-.history-widget {
+.history-widget-container {
     position: fixed;
     flex-direction:column;
     bottom: 0;
@@ -15,7 +15,7 @@
 
 
 
-.history-widget>button {
+.history-widget-container>button {
     box-sizing: border-box;
     border: 2px solid black;
     width: 75px;
@@ -29,7 +29,7 @@
 
 }
 
-.history-widget > button :hover {
+.history-widget-container > button :hover {
     box-sizing: border-box;
     border: 2px solid black;
     transition: border, .25s;
@@ -86,13 +86,19 @@
 
 
 .fadeInRight {
+    height: auto !important;
 }
 
 .fadeOutRight {
-    /* height: 0px;
-    width: 0px; */
+    /* position: absolute; */
+     /* height: 0px; */
+     /* visibility:hidden; */
+     /* border: none; */
+    /* width: 0px;  */
     /* transition-delay: 2s;
     transition: height 1s, */
     /* width 1s; */
+    /* height: 0px; */
     z-index:0;
+
 }
