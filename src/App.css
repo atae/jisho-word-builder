@@ -87,6 +87,7 @@ html, body, #root {
   margin: 0 auto;
   /* background-color: red; */
     transition: opacity .75s ease-in-out;
+    padding-bottom: 20px;
 
 }
 
