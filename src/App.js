@@ -189,11 +189,13 @@ class App extends Component {
 
   render() {
     let splashMessage = this.generateSplashMessage()
+    // <img src={logo} className="App-logo" alt="logo" />
     return (
       <div className="App">
         <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Heisig-Jisho Word Builder</h1>
+          <h1>雛</h1>
+          <h2>Hiyoko Jisho</h2>
+          <h3>Intermediate Heisig-Jisho Word Builder Dictionary</h3>
         </header>
         
         <SearchBar submitHandler={this.searchForWords} clearSearch={this.clearSearch}/>

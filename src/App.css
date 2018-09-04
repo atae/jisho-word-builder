@@ -14,11 +14,23 @@ html, body, #root {
 }
 
 .App-header {
-  margin-top: 70px;
   background-color: #222;
-  height: 200px;
+  /* height: 200px; */
   padding: 20px;
+  /* padding-top: 130px; */
+  margin-top:70px;
   color: white;
+}
+
+.App-header h1 {
+  padding-top: 60px;
+  font-size: 80px;
+  color: #469CF1;
+  /* background-color: red; */
+}
+
+.App-header h3{
+  padding-bottom: 40px;
 }
 @media(max-width: 767px) {
   .App-header{
