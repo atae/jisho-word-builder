@@ -16,6 +16,12 @@ const DictionaryEntry = (props) => {
                         Add {featuredWord} to Built Word
                         </button>
                     </div>
+                    <div>
+                        <button
+                            onClick={() => { props.newBuildWord(featuredWord); }}>
+                            Add {featuredWord} to New Built Word
+                        </button>
+                    </div>
                     </div>
                     <div className="sense col-9 col-xs-6">
                         <DictionarySenseList entries={props.entry.senses} /> 

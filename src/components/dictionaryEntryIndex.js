@@ -20,7 +20,7 @@ class DictionaryEntryIndex extends Component {
         }
         Object.keys(this.props.dictionaryEntries).forEach((entryKey, i) => {
             let currentEntry = this.props.dictionaryEntries[entryKey];
-            generatedDictionaryEntries.push(<DictionaryEntry buildWord={this.props.buildWord} key={'dictionaryEntry' + i } entry={currentEntry}/>);
+            generatedDictionaryEntries.push(<DictionaryEntry newBuildWord={this.props.newBuildWord} buildWord={this.props.buildWord} key={'dictionaryEntry' + i } entry={currentEntry}/>);
         });
 
         return generatedDictionaryEntries;
@@ -29,10 +29,16 @@ class DictionaryEntryIndex extends Component {
 
     render() {
         let entries = this.generateDictionaryEntries();
+        console.log('this.props.newBuildWord', this.props.newBuildWord);
         return (
             
             <div className="container animated fadeIn">
-                {Object.keys(this.props.heisigEntries).length !== 0 ? <HeisigEntries searchForWords={this.props.searchForWords} buildWord={this.props.buildWord} entries={this.props.heisigEntries} /> : ''}
+                {Object.keys(this.props.heisigEntries).length !== 0 ? 
+                    <HeisigEntries 
+                        newBuildWord={this.props.newBuildWord}
+                        searchForWords={this.props.searchForWords} 
+                        buildWord={this.props.buildWord} 
+                        entries={this.props.heisigEntries} /> : ''}
                 {entries}
             </div>
         );

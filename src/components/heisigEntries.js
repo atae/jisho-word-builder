@@ -11,8 +11,9 @@ class HeisigEntries extends React.Component {
     
     generateEntries = () => {
         
+        console.log('this.props.newBuildWord', this.props.newBuildWord);
         return this.props.entries.map((el) => {
-            return (<HeisigEntry key={"HeisigEntry" + el[0]}searchForWords={this.props.searchForWords} buildWord={this.props.buildWord} entry={el} />)
+            return (<HeisigEntry key={"HeisigEntry" + el[0]}　searchForWords={this.props.searchForWords} newBuildWord={this.props.newBuildWord} buildWord={this.props.buildWord} entry={el} />)
         })
     }
 

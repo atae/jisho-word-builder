@@ -17,6 +17,7 @@ class App extends Component {
     //Add mouseover on Kanji to show Heisig keyword
     this.state = { fetching: '', searchHistory : [],  dictionaryResults: {}, builtWord: "", heisigResults: {}, searched: false, error: ''};
     this.buildWord = this.buildWord.bind(this);
+    this.newBuildWord = this.newBuildWord.bind(this);
     this.clearWord = this.clearWord.bind(this);
     this.backspaceWord = this.backspaceWord.bind(this);
     this.searchBuiltWord = this.searchBuiltWord.bind(this);
@@ -34,6 +35,7 @@ class App extends Component {
         "heisig",
       ]
     }
+   
     this.kanjiSearchOptions = {
       shouldSort: true,
       threshold: 0.2,
@@ -118,6 +120,11 @@ class App extends Component {
         error: `I cannot breve: ${err}`
       });
     });
+  }
+
+  newBuildWord(word) {
+    let newBuiltWord = word;
+    this.setState({ builtWord: newBuiltWord });
   }
 
   buildWord(word) {
@@ -208,6 +215,7 @@ class App extends Component {
         <DictionaryEntryIndex 
           searchForWords={this.searchForWords}
           buildWord={this.buildWord}
+          newBuildWord={this.newBuildWord}
           dictionaryEntries={this.state.dictionaryResults} 
           heisigEntries={this.state.heisigResults}
           searched={this.state.searched} />
