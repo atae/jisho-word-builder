@@ -5,7 +5,7 @@
 [heroku](http://damp-spire-31282.herokuapp.com/)
 
 This dictionary was built to serve as a sort of transitional dictionary tool for the intermediate japanese learner. 
-The main audience is the japanese learner who knows their Heisig keywords (RTK 1 & 3) but still doesn't yet know all the readings or has trouble understanding kanji compounds. You can also enter the kanji and retrieve the Heisig keyword if it exists or not.
+The main audience is the japanese learner who knows their Heisig keywords (RTK 1 & 3 plus thecite's RTK4 list) but still doesn't yet know all the readings or has trouble with kanji compounds. You can also enter the kanji and retrieve the Heisig keyword if it exists or not.
 
 The app allows you to lookup kanji by their Heisig keywords and to build kanji compounds cumulatively as you go through multiple search queries within the same app window. This saves you from having to copy and paste into another window just to build up a search query.
 

@@ -107,7 +107,8 @@ html, body, #root {
   padding-top: 10px;
     font-family: polaris;
     font-size: 24px;
-
+    font-weight: 100;
+    opacity: 0.9;
   /* color:#fdca40; */
 }
 @media(max-width: 767px) {
@@ -160,7 +161,7 @@ input {
   margin-right: 10px;
   padding-left: 5px;
   border: 1px solid black;
-  box-shadow: 1px 1px #999;
+  box-shadow: inset 1px 1px #999;
 
 }
 
