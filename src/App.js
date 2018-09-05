@@ -8,6 +8,7 @@ import heisigToKanji from './heisigToKanjiExpandedStructure.json';
 // import rtk4HeisigToKanji from './theCiteRTK4.json'
 import HistoryWidget from './components/historyWidget';
 import Fuse from 'fuse.js'
+import createHistory from 'history/createBrowserHistory';
 // import kanjiToHeisig from 'kanjiToHeisig.json';
 
 
@@ -47,6 +48,9 @@ class App extends Component {
         "kanji",
       ]
     }
+
+    this.history = createHistory();
+    this.location = this.history.location;
   }
 
  
@@ -57,6 +61,9 @@ class App extends Component {
 
   componentDidMount() {
     window.scrollTo(0,0)
+    if (this.location.pathname != "/") {
+      this.searchForWords(this.location.pathname.split('=')[1])
+    }
   }
 
   searchHeisig(word) {
@@ -117,7 +124,7 @@ class App extends Component {
           newHistory = newHistory.concat(word)
         }
         window.scrollTo(0, 0)
-
+        that.history.push('/', {q: word});
         that.setState({ fetching: '', dictionaryResults: jsonResponse, heisigResults, error: '', searched: true, searchHistory: newHistory });
       });
     }).catch((err) => {
@@ -145,6 +152,7 @@ class App extends Component {
   }
 
   clearWord() {
+  
     this.setState({builtWord: []});
   }   
 
@@ -169,6 +177,7 @@ class App extends Component {
         let heisigResults = that.searchHeisig(builtWord)
         let newHistory = that.state.searchHistory.concat(builtWord)
         window.scrollTo(0, 0)
+
 
         that.setState({ fetching: '', dictionaryResults: jsonResponse, heisigResults　, error: '', searched: true, searchHistory: newHistory });
       });
