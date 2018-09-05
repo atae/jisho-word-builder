@@ -128,7 +128,7 @@ button {
   margin-bottom: 30px;
   padding: 10px;
   margin-top: 10px;
-  box-shadow:3px 3px rgba(0,0,0,0.5);
+  box-shadow:2px 2px rgba(0,0,0,0.3);
       transition: box-shadow,
       .1s;
     transition: background-color,
@@ -139,6 +139,10 @@ button {
 
 h1, h2, h3 {
   font-family:polaris;
+}
+
+h3 {
+  font-weight: 500;
 }
 
 button:hover {
@@ -177,6 +181,16 @@ input {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
 }
+
+.card {
+  border-radius: 20px;
+  border: 1px solid black;
+  padding: 5%;
+  margin: 5px 0 5px 0;
+  box-shadow: 1px 1px rgba(0,0,0,0.5);
+}
+
+
 
 .container {
   margin: 0 auto;

@@ -5,11 +5,13 @@ import DictionarySenseList from './dictionarySenseList';
 const DictionaryEntry = (props) => {
     let featuredWord = props.entry.japanese[0].word ? props.entry.japanese[0].word : props.entry.japanese[0].reading
         return (
-            <div>
+            <div className="card">
                 <div className="entry row animated fadeIn">
                     <div className="col-md-3 col-xs-6">
-                    <h2>{featuredWord}</h2>
-                    <p>{props.entry.japanese[0].word ? props.entry.japanese[0].reading : ""}</p>
+                    <div className="entry-word">
+                        <h2>{featuredWord}</h2>
+                        <p>{props.entry.japanese[0].word ? props.entry.japanese[0].reading : ""}</p>
+                    </div>
                     <div className="sense-button-container">
                         <button 
                         className="sense-button"
@@ -27,7 +29,6 @@ const DictionaryEntry = (props) => {
                         <DictionarySenseList entries={props.entry.senses} /> 
                     </div>
                 </div>
-                <hr/>
             </div>
         );
 

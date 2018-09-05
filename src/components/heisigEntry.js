@@ -2,7 +2,6 @@ import React from 'react';
 import '../Dictionary.css';
 
 const HeisigEntry = (props) => {
-    console.log('props', props);
     
     return (
         <div className="animated fadeIn">

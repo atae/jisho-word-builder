@@ -29,10 +29,16 @@ sup {
     max-width: 250px;
 }
 .jisho {
-    text-align: left;
-    margin-bottom: 20px;
+    text-align: center;
+    margin: 40px 0px;
     font-family: polaris;
 }
+
+.entry-word {
+    text-align: center;
+}
+
+
 
 .heisig > div > div > div > button {
    
@@ -68,9 +74,24 @@ sup {
 .heisig-entries h2 {
     margin-top: 10px;
 }
+
+.sense-entry {
+    margin-bottom: 5px;
+}
+
+.sense {
+    margin-top: 30px;
+}
+
+
 @media(max-width:768px) {
     .heisig-entries {
         flex-direction:column;
+    }
+
+    .sense {
+        margin-top: 10px;
+
     }
 }
 @media(max-width:480px) {
@@ -88,7 +109,10 @@ sup {
     .sense {
         width: 200px;
         line-height: 20px;
+        /* text-align:center; */
+        margin: 0 auto;
     }
+
     .entry > div > h2 {
         font-size: 1.5rem
     }
