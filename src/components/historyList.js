@@ -8,9 +8,13 @@ class HistoryList extends React.Component {
     }
 
     renderHistoryItems = () => {
+       if (this.props.history.length > 0) {
        return this.props.history.map((historyItem, i) => {
            return [<HistoryItem key={'historyItem' + i} searchForWords={this.props.searchForWords} historyItem = {historyItem} />]
        })
+        } else {
+            return [<div className="history-item" style={{'backgroundColor' : '#EEE'}}> No Results </div>]
+        }
     }
 
 
@@ -24,7 +28,9 @@ class HistoryList extends React.Component {
                 <div className="history-item history-item-header" style={{ "borderBottom": "none" }}>
                     <p><strong> Your Search History </strong></p>
                 </div>
+                <div className="history-item-sublist">
                 {historyItems}
+                </div>
                 <div onClick={this.props.clearHistory} className="history-item history-item-button" style={{"borderBottom": "2px solid black"}}>
                     <p> Clear History </p>
                 </div>

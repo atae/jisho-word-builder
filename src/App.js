@@ -60,6 +60,7 @@ class App extends Component {
 
     this.browserHistory = createHistory();
     this.location = this.browserHistory.location;
+    this.appName = 'Hiyoko Jisho'
   }
 
  
@@ -70,11 +71,22 @@ class App extends Component {
 
   componentDidMount() {
     window.scrollTo(0,0)
-    
-    if (this.location.pathname != "/") {
-      //check length
-      this.searchForWords(this.location.pathname.slice(1))
+    window.onpopstate = this.onBackButtonEvent;
+    document.title = this.appName
+    this.redirectToPathName();
+  }
+
+  redirectToPathName = () => {
+    if (window.location.pathname != "/") {
+      let word = decodeURIComponent(window.location.pathname.slice(1))
+      this.searchForWords(word);
     }
+  }
+
+  onBackButtonEvent = (e) => {
+    console.log(e);
+    this.redirectToPathName();
+    // this.searchHeisig(word);
   }
 
   searchHeisig(word) {
@@ -111,7 +123,6 @@ class App extends Component {
     heisigResults = heisigResults.map(JSON.stringify).reverse().filter(function (e, i, a) {
       return a.indexOf(e, i + 1) === -1;
     }).reverse().map(JSON.parse)
-    console.log(heisigResults)
     return heisigResults
   }
 
@@ -134,7 +145,9 @@ class App extends Component {
         let newHistory = that.addToHistory(word, searchMode);
 
         window.scrollTo(0, 0)
+        document.title = word + ' - ' + that.appName;
         that.setState({ fetching: '', dictionaryResults: jsonResponse, heisigResults, error: '', searched: true, searchHistory: newHistory });
+
       });
     }).catch((err) => {
       this.loading.className = "fetching hiddenBlock";
@@ -153,8 +166,8 @@ class App extends Component {
     }
 
     localStorage.setItem('hiyokoHistory', newHistory);
-    console.log('localStorage ' + localStorage.getItem('hiyokoHistory'))
 
+    this.browserHistory.push('/' + word);
     return newHistory
   }
 
@@ -197,6 +210,7 @@ class App extends Component {
         jsonResponse = resJson.data;
         let heisigResults = that.searchHeisig(builtWord)
         let newHistory = that.addToHistory(builtWord);
+        document.title = builtWord + ' - ' + that.appName;
 
         // let newHistory = that.state.searchHistory.concat(builtWord)
         window.scrollTo(0, 0)
