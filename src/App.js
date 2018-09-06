@@ -71,9 +71,18 @@ class App extends Component {
 
   componentDidMount() {
     window.scrollTo(0,0)
-    window.onpopstate = this.onBackButtonEvent;
+    // window.onpopstate = this.onBackButtonEvent;
     document.title = this.appName
+    let unlisten = this.browserHistory.listen((location, action) => {
+      console.log(action, location.pathname)
+      if (action === 'POP') {
+        // console.log('back');
+        this.searchForWords(location.pathname.slice(1), false, 'false');
+      }
+
+    })
     this.redirectToPathName();
+    console.log('mounties')
   }
 
   redirectToPathName = () => {
@@ -83,11 +92,25 @@ class App extends Component {
     }
   }
 
-  onBackButtonEvent = (e) => {
-    console.log(e);
-    this.redirectToPathName();
-    // this.searchHeisig(word);
+  addToHistory = (word, searchMode, push) => {
+    console.log(word, push)
+    let newHistory = this.state.searchHistory
+    if (word != '') {
+      if (newHistory.includes(word)) {
+        newHistory.splice( newHistory.indexOf(word), 1);
+      } 
+      newHistory = [word].concat(newHistory)
+      
+    }
+
+    localStorage.setItem('hiyokoHistory', newHistory);
+    if (push !== 'false') {
+
+      this.browserHistory.push('/' + word);
+    }
+    return newHistory
   }
+
 
   searchHeisig(word) {
     let fuse = new Fuse(this.heisig, this.heisigSearchOptions);
@@ -126,7 +149,8 @@ class App extends Component {
     return heisigResults
   }
 
-  searchForWords(word, searchMode) {
+  searchForWords(word, searchMode, push) {
+    console.log('called')
     let heisigResults = this.searchHeisig(word)
 
 
@@ -142,7 +166,7 @@ class App extends Component {
         let jsonResponse = {};
         jsonResponse = resJson.data;
      
-        let newHistory = that.addToHistory(word, searchMode);
+        let newHistory = that.addToHistory(word, searchMode, push);
 
         window.scrollTo(0, 0)
         document.title = word + ' - ' + that.appName;
@@ -159,17 +183,7 @@ class App extends Component {
     });
   }
 
-  addToHistory = (word, searchMode) => {
-    let newHistory = this.state.searchHistory
-    if (searchMode !== 'history' && !newHistory.includes(word) && word != '') {
-      newHistory = newHistory.concat(word)
-    }
-
-    localStorage.setItem('hiyokoHistory', newHistory);
-
-    this.browserHistory.push('/' + word);
-    return newHistory
-  }
+ 
 
   newBuildWord(word) {
     let newBuiltWord = word;

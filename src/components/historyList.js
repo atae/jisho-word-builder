@@ -21,7 +21,7 @@ class HistoryList extends React.Component {
     render() {
         let hiddenMode = this.props.listClass
         let historyItems = this.renderHistoryItems();
-        console.log(this.props.searchForWords)
+        // console.log(this.props.searchForWords)
 
         return (
             <div className={"animated history-widget-list " + hiddenMode}>

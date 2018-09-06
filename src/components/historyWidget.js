@@ -36,7 +36,6 @@ class HistoryWidget extends React.Component {
     }
 
     render() {
-        console.log(this.props.searchForWords)
         return(
             <div className="history-widget-container">
                 <div className={"history-widget " + this.state.listClass}>

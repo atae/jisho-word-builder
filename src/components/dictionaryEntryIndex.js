@@ -29,7 +29,6 @@ class DictionaryEntryIndex extends Component {
 
     render() {
         let entries = this.generateDictionaryEntries();
-        console.log('this.props.newBuildWord', this.props.newBuildWord);
         return (
             
             <div className="container animated fadeIn">
