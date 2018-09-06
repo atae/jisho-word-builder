@@ -16,7 +16,16 @@ class App extends Component {
   constructor() {
     super();
     //Add mouseover on Kanji to show Heisig keyword
-    this.state = { fetching: '', searchHistory : [],  dictionaryResults: {}, builtWord: "", heisigResults: {}, searched: false, error: ''};
+    this.initialHistory = localStorage.getItem('hiyokoHistory').split(',');
+
+    this.state = { 
+      fetching: '', 
+      searchHistory : this.initialHistory[0] === "" ? [] : this.initialHistory,  
+      dictionaryResults: {}, 
+      builtWord: "", 
+      heisigResults: {}, 
+      searched: false, 
+      error: ''};
     this.buildWord = this.buildWord.bind(this);
     this.newBuildWord = this.newBuildWord.bind(this);
     this.clearWord = this.clearWord.bind(this);
@@ -49,8 +58,8 @@ class App extends Component {
       ]
     }
 
-    this.history = createHistory();
-    this.location = this.history.location;
+    this.browserHistory = createHistory();
+    this.location = this.browserHistory.location;
   }
 
  
@@ -61,8 +70,10 @@ class App extends Component {
 
   componentDidMount() {
     window.scrollTo(0,0)
+    
     if (this.location.pathname != "/") {
-      this.searchForWords(this.location.pathname.split('=')[1])
+      //check length
+      this.searchForWords(this.location.pathname.slice(1))
     }
   }
 
@@ -119,12 +130,10 @@ class App extends Component {
 
         let jsonResponse = {};
         jsonResponse = resJson.data;
-        let newHistory = that.state.searchHistory
-        if (searchMode !== 'history' && !newHistory.includes(word) && word != '') {
-          newHistory = newHistory.concat(word)
-        }
+     
+        let newHistory = that.addToHistory(word, searchMode);
+
         window.scrollTo(0, 0)
-        that.history.push('/', {q: word});
         that.setState({ fetching: '', dictionaryResults: jsonResponse, heisigResults, error: '', searched: true, searchHistory: newHistory });
       });
     }).catch((err) => {
@@ -135,6 +144,18 @@ class App extends Component {
         error: `I cannot breve: ${err}`
       });
     });
+  }
+
+  addToHistory = (word, searchMode) => {
+    let newHistory = this.state.searchHistory
+    if (searchMode !== 'history' && !newHistory.includes(word) && word != '') {
+      newHistory = newHistory.concat(word)
+    }
+
+    localStorage.setItem('hiyokoHistory', newHistory);
+    console.log('localStorage ' + localStorage.getItem('hiyokoHistory'))
+
+    return newHistory
   }
 
   newBuildWord(word) {
@@ -175,7 +196,9 @@ class App extends Component {
         let jsonResponse = {};
         jsonResponse = resJson.data;
         let heisigResults = that.searchHeisig(builtWord)
-        let newHistory = that.state.searchHistory.concat(builtWord)
+        let newHistory = that.addToHistory(builtWord);
+
+        // let newHistory = that.state.searchHistory.concat(builtWord)
         window.scrollTo(0, 0)
 
 
@@ -202,6 +225,7 @@ class App extends Component {
   }
 
   clearHistory = () => {
+    localStorage.setItem('hiyokoHistory', [])
     this.setState({searchHistory: []})
   }
 
