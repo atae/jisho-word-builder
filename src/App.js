@@ -93,7 +93,6 @@ class App extends Component {
   }
 
   addToHistory = (word, searchMode, push) => {
-    console.log(word, push)
     let newHistory = this.state.searchHistory
     if (word != '') {
       if (newHistory.includes(word)) {
