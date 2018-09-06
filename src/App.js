@@ -16,8 +16,9 @@ class App extends Component {
   constructor() {
     super();
     //Add mouseover on Kanji to show Heisig keyword
-    this.initialHistory = localStorage.getItem('hiyokoHistory').split(',');
-
+   
+    this.initialHistory = localStorage.getItem('hiyokoHistory') === null ? [] : localStorage.getItem('hiyokoHistory').split(',');
+ 
     this.state = { 
       fetching: '', 
       searchHistory : this.initialHistory[0] === "" ? [] : this.initialHistory,  
