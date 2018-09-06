@@ -77,19 +77,30 @@ class App extends Component {
     let unlisten = this.browserHistory.listen((location, action) => {
       console.log(action, location.pathname)
       if (action === 'POP') {
-        // console.log('back');
+        console.log(location.pathname === '/');
+        if (location.pathname === '/') {
+          this.setState({
+            fetching: '',
+            dictionaryResults: {},
+            builtWord: "",
+            heisigResults: {},
+            searched: false,
+            error: ''});
+        } else {
         this.searchForWords(location.pathname.slice(1), false, 'false');
+        }
       }
 
     })
     this.redirectToPathName();
-    console.log('mounties')
   }
 
   redirectToPathName = () => {
     if (window.location.pathname != "/") {
       let word = decodeURIComponent(window.location.pathname.slice(1))
       this.searchForWords(word);
+    } else {
+      this.setState({ searched: false });
     }
   }
 
