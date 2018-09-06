@@ -11,8 +11,8 @@
     justify-content: center;
     align-items: flex-end;
      background:none;   
-     /* min-width: 175px;
-     max-width: 280px; */
+     min-width: 175px;
+     /* max-width: 280px; */
      }
 
 
@@ -73,6 +73,7 @@
     padding: 10px;
     min-width: 175px;
     max-width: 280px;
+    opacity: 1;
    
 }
 
@@ -117,4 +118,9 @@
     /* height: 0px; */
     z-index:0;
     transition: height 1s ease-in-out, width 1s ease-in-out;
+}
+
+.fadeOut {
+    opacity: 0;
+    transition: opacity 1s ease-in-out;
 }

@@ -13,7 +13,7 @@ class HistoryWidget extends React.Component {
 
     onClickHandler = () => {
         this.setState({ 
-            listClass: this.state.listClass === 'fadeInRight' ? 'fadeOutDown' : 'fadeInRight',
+            listClass: this.state.listClass === 'fadeInRight' ? 'hidden' : 'fadeInRight',
             buttonClass: this.state.buttonClass === '' ? 'expanded' : ''
         })
     }
@@ -25,7 +25,7 @@ class HistoryWidget extends React.Component {
     onAnimationEnd = () => {
         let el = document.getElementsByClassName('history-widget')[0]
         el.addEventListener('animationend', () => {
-            if (el.className == 'history-widget fadeOutDown') {
+            if (el.className == 'history-widget hidden') {
                 el.style.height = '0';
                 el.style.width = '0';
             } else {
