@@ -2,6 +2,30 @@ html, body, #root {
   height: 100%;
   font-family: polaris;
 }
+
+@font-face {
+  font-family: polaris-bold;
+  src: url("/polaris-bold.otf")
+}
+
+@font-face {
+  font-family: polaris-book;
+  src: url("/polaris-book.otf")
+}
+@font-face {
+  font-family: polaris-heavy;
+  src: url("/polaris-heavy.otf")
+}
+@font-face {
+  font-family: polaris-light;
+  src: url("/polaris-light.otf")
+}
+
+@font-face {
+  font-family: polaris-medium;
+  src: url("/polaris-medium.otf")
+}
+
 .App {
   text-align: center;
   height: 100%;
