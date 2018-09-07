@@ -5,8 +5,8 @@ const HistoryItem = (props) => {
     let ellipses = props.historyItem.length > 12 ? '...' : ''
 
     return (
-        <div className="history-item history-item-button">
-            <p onClick={() => {props.searchForWords(props.historyItem, 'history')}}> {props.historyItem.slice(0,12) + ellipses} </p>
+        <div onClick={() => { props.searchForWords(props.historyItem, 'history') }} className="history-item history-item-button">
+            <p> {props.historyItem.slice(0,12) + ellipses} </p>
         </div>
     );
 
