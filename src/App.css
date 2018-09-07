@@ -5,25 +5,25 @@ html, body, #root {
 
 @font-face {
   font-family: polaris-bold;
-  src: url("/polaris-bold.otf")
+  src: url("./polaris-bold.otf")
 }
 
 @font-face {
   font-family: polaris-book;
-  src: url("/polaris-book.otf")
+  src: url("./polaris-book.otf")
 }
 @font-face {
   font-family: polaris-heavy;
-  src: url("/polaris-heavy.otf")
+  src: url("./polaris-heavy.otf")
 }
 @font-face {
   font-family: polaris-light;
-  src: url("/polaris-light.otf")
+  src: url("./polaris-light.otf")
 }
 
 @font-face {
   font-family: polaris-medium;
-  src: url("/polaris-medium.otf")
+  src: url("./polaris-medium.otf")
 }
 
 .App {
