@@ -25,6 +25,7 @@ class SearchBar extends Component{
                     <input
                     maxlength="255" 
                     type="text"
+                    placeholder="Empty"
                     onChange={this.onChangeHandler}
                     ref={(input) => { this.searchBarWord = input; }} 
                     value={this.state.searchWord}/>
