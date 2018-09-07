@@ -242,6 +242,9 @@ input {
     margin-bottom: 10px;
   }
 
+  .container {
+    width: 100%;
+  }
   .splash-message{
     padding-bottom: 20px;
   }
