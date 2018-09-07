@@ -1,6 +1,6 @@
 html, body, #root {
   height: 100%;
-  font-family: polaris;
+  font-family: polaris-book;
 }
 
 @font-face {
@@ -123,13 +123,13 @@ html, body, #root {
 
 .App-header h2{
   /* color:#f79824; */
-    font-family: polaris;
+    font-family: polaris-book;
 
 }
 .App-header h3{
   padding-bottom: 40px;
   padding-top: 10px;
-    font-family: polaris;
+    font-family: polaris-light;
     font-size: 24px;
     font-weight: 100;
     opacity: 0.9;
@@ -162,7 +162,7 @@ button {
 }
 
 h1, h2, h3 {
-  font-family:polaris;
+  font-family:polaris-book;
 }
 
 h3 {
