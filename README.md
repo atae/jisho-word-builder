@@ -14,7 +14,7 @@ I am actually actively using this application and am always looking for ways to 
 # Example
 If you wanted to look up the word 一網打尽, you could take the following actions
 1. Type in "一”　into built word
-2. Look up 'hawser' (RTK1 Keyword) and click 'Add '網' to built word.'
+2. Look up 'netting' (RTK1 Keyword) and click 'Add '網' to built word.'
 3. Look up 'utsu' or ’うつ’, click on 'Add 打つ to built word.' and delete the つ
 4. You can click on 'Search built word' at this point and the underlying Jisho.org API will complete the kanji compound for you if it's well known and  defined in its dictionary.
     

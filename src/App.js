@@ -5,11 +5,10 @@ import SearchBar from './components/searchBar';
 import BuiltWord from './components/builtWord';
 import DictionaryEntryIndex from './components/dictionaryEntryIndex';
 import heisigToKanji from './heisigToKanjiExpandedStructure.json';
-// import rtk4HeisigToKanji from './theCiteRTK4.json'
 import HistoryWidget from './components/historyWidget';
 import Fuse from 'fuse.js'
 import createHistory from 'history/createBrowserHistory';
-// import kanjiToHeisig from 'kanjiToHeisig.json';
+import Util from './util.js';
 
 
 class App extends Component {
@@ -18,7 +17,7 @@ class App extends Component {
     //Add mouseover on Kanji to show Heisig keyword
    
     this.initialHistory = localStorage.getItem('hiyokoHistory') === null ? [] : localStorage.getItem('hiyokoHistory').split(',');
- 
+    this.util = new Util;
     this.state = { 
       fetching: '', 
       searchHistory : this.initialHistory[0] === "" ? [] : this.initialHistory,  
@@ -64,11 +63,7 @@ class App extends Component {
     this.appName = 'Hiyoko Jisho'
   }
 
- 
 
-  isKanji = (ch) => {
-    return !!ch.match(/[\u4E00-\u9FAF\u3040-\u3096\u30A1-\u30FA\uFF66-\uFF9D\u31F0-\u31FF]/);
-  }
 
   componentDidMount() {
     window.scrollTo(0,0)
@@ -140,7 +135,7 @@ class App extends Component {
     let kanjiResults = []
     fuse = new Fuse(this.heisig, this.kanjiSearchOptions);
     kanjiResults = word.split('').filter((el) => {
-      return this.isKanji(el);
+      return this.util.isKanji(el);
     }).map((el) => {
       return fuse.search(el)
     }).filter((el) => {
@@ -152,7 +147,6 @@ class App extends Component {
       return [wordEntry, kanji]
     })
 
-
     heisigResults = kanjiResults.concat(heisigResults);
     heisigResults = heisigResults.map(JSON.stringify).reverse().filter(function (e, i, a) {
       return a.indexOf(e, i + 1) === -1;
@@ -161,7 +155,66 @@ class App extends Component {
   }
 
   searchForWords(word, searchMode, push) {
-    console.log('called')
+    let splitWords = word.split(',');
+    let notKanji = true;
+    splitWords.forEach(word => {
+      if (this.util.isKanji(word)) {
+        notKanji = false;
+      }
+    });
+
+    if (splitWords.length > 1 && notKanji) {
+      this.searchAsHeisigCompound(splitWords, searchMode, push);
+    } else {
+      this.searchAsIndividual(word, searchMode, push);
+    }
+  }
+
+  searchAsHeisigCompound = (words, searchMode,push)=> {
+    let compound = []
+    let keywordCompound = []
+    let alternatives = []
+    words.forEach(word => {
+      let result = this.searchHeisig(word)
+      if (result.length > 0) {
+        compound.push(result[0][1]);
+        keywordCompound.push(result[0][0]);
+        alternatives.push(result.slice(1));
+      }
+    })
+    
+    let word = compound.join('');
+    this.searchAsIndividual(word, searchMode, push);
+
+
+    // fetch(`https://ancient-sands-74909.herokuapp.com/?keyword=${word}`, { mode: 'cors' }).then((res) => {
+    //   let that = this;
+
+    //   res.json().then(function (resJson) {
+    //     that.loading.className = "fetching hiddenBlock";
+
+    //     let jsonResponse = {};
+    //     jsonResponse = resJson.data;
+
+    //     let newHistory = that.addToHistory(word, searchMode, push);
+
+    //     window.scrollTo(0, 0)
+    //     document.title = word + ' - ' + that.appName;
+    //     that.setState({ fetching: '', dictionaryResults: jsonResponse, heisigResults: compoundResult , error: '', searched: true, searchHistory: newHistory });
+
+    //   });
+    // }).catch((err) => {
+    //   this.loading.className = "fetching hiddenBlock";
+
+    //   this.setState({
+
+    //     error: `I cannot breve: ${err}`
+    //   });
+    // });
+  }
+
+
+   searchAsIndividual = (word, searchMode, push) => {
     let heisigResults = this.searchHeisig(word)
 
 
@@ -176,7 +229,7 @@ class App extends Component {
 
         let jsonResponse = {};
         jsonResponse = resJson.data;
-     
+
         let newHistory = that.addToHistory(word, searchMode, push);
 
         window.scrollTo(0, 0)
@@ -188,7 +241,7 @@ class App extends Component {
       this.loading.className = "fetching hiddenBlock";
 
       this.setState({
-        
+
         error: `I cannot breve: ${err}`
       });
     });
@@ -250,15 +303,6 @@ class App extends Component {
     });
   }
 
-  generateSplashMessage = () => {
-    return (
-      <div className="splash-message">
-        <p> Enter any Kanji, Heisig Keyword, or English/Japanese sentences in the box above.</p>
-        <p> Use the 'Build Word' button to create kanji compounds based on your search results. </p>
-      </div>
-    )
-  }
-
   clearSearch = () => {
     this.setState({ dictionaryResults: {}, heisigResults: {}, searched: false, error: ''})
   }
@@ -269,8 +313,7 @@ class App extends Component {
   }
 
   render() {
-    let splashMessage = this.generateSplashMessage()
-    // <img src={logo} className="App-logo" alt="logo" />
+    let splashMessage = this.util.generateSplashMessage()
     return (
       <div className="App">
         <header className="App-header">
